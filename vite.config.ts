@@ -10,7 +10,7 @@ export default defineConfig({
       targets: [
         {
           src: 'node_modules/@ringozz/*/build/*.wasm',
-          dest: 'build',
+          dest: 'assets',
           preserveTimestamps: true,
         },
       ],
