@@ -56,11 +56,11 @@
       import init from '/src/main.tsx';
       init.then(() => {
         const splash = document.getElementById('splash');
-        splash.addEventListener('transitionend', function () {
-          splash.parentNode.removeChild(splash);
-        });
-        splash.style['transition'] = 'opacity 0.25s ease-in';
-        splash.style['opacity'] = 0;
+        if (splash) {
+          splash.ontransitionend = () => splash.parentNode.removeChild(splash);
+          splash.style['transition'] = 'opacity 0.25s ease-in';
+          splash.style['opacity'] = 0;
+        }
       });
     </script>
   </body>
