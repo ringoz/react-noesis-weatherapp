@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "bundle": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ringozz/react-noesis": "^0.0.5",
+    "@ringozz/react-noesis": "^0.0.6",
     "react": "^18.2.0"
   },
   "devDependencies": {

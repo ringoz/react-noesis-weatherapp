@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        entryFileNames: 'build/[name].js',
+        entryFileNames: '[name].js',
       }
     }
   },
@@ -17,7 +17,7 @@ export default defineConfig({
       targets: [
         {
           src: 'node_modules/@ringozz/*/build/*.wasm',
-          dest: 'build',
+          dest: '.',
           preserveTimestamps: true,
         },
       ],
