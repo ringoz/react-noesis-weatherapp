@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ringozz/react-noesis": "^0.0.7",
+    "@ringozz/react-noesis": "^0.0.9",
     "react": "^18.2.0"
   },
   "devDependencies": {
