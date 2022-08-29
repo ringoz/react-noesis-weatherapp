@@ -12,9 +12,9 @@
     "module": "ES2020",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "noEmit": true
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
