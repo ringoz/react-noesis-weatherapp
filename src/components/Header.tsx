@@ -1,6 +1,9 @@
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { TextBlock } from "@ringozz/react-noesis";
 import { CurrentWeatherModel, SettingsModel } from "../models";
+
+const faSun = "Sun";
+const faMoon = "Moon";
+const FontAwesomeIcon = ({icon}: {icon: string}) => <TextBlock>${icon}</TextBlock>;
 
 type HeaderProps = {
   locality?: string;
