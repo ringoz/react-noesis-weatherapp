@@ -1,4 +1,5 @@
-import { DailyWeatherDetailsModel } from "../models";
+import { StackPanel, TextBlock } from '@ringozz/react-noesis';
+import { DailyWeatherDetailsModel } from '../models';
 
 type DailyItemDetailsProps = {
   data: DailyWeatherDetailsModel;
@@ -6,54 +7,54 @@ type DailyItemDetailsProps = {
 
 export const DailyItemDetails = ({ data }: DailyItemDetailsProps) => {
   return (
-    <div className="daily-item-details">
-      <div className="daily-details-grid">
-        <div className="daily-details-grid-item">
-          <label>Rain:</label>
-          <label>{data.rain.toFixed(2)}%</label>
-        </div>
-        <div className="daily-details-grid-item">
-          <label>Pressure:</label>
-          <label>{data.pressure}hPa</label>
-        </div>
-        <div className="daily-details-grid-item">
-          <label>Humidity:</label>
-          <label>{data.humidity}%</label>
-        </div>
-        <div className="daily-details-grid-item">
-          <label>Clouds:</label>
-          <label>{data.clouds}%</label>
-        </div>
-        <div className="daily-details-grid-item">
-          <label>Wind speed:</label>
-          <label>{data ? Math.round(data.wind_speed) : ""} m/s</label>
-        </div>
-        <div className="daily-details-grid-item">
-          <label>UV Index:</label>
-          <label>{data.uvi}</label>
-        </div>
-        <div className="daily-details-grid-item">
-          <label>Sunrise:</label>
-          <label>
-            {new Date(data.sunrise * 1000).toLocaleString("en-GB", {
-              hour: "2-digit",
-              minute: "2-digit",
+    <StackPanel>
+      <StackPanel>
+        <StackPanel>
+          <TextBlock>Rain:</TextBlock>
+          <TextBlock>{data.rain.toFixed(2)}%</TextBlock>
+        </StackPanel>
+        <StackPanel>
+          <TextBlock>Pressure:</TextBlock>
+          <TextBlock>{data.pressure}hPa</TextBlock>
+        </StackPanel>
+        <StackPanel>
+          <TextBlock>Humidity:</TextBlock>
+          <TextBlock>{data.humidity}%</TextBlock>
+        </StackPanel>
+        <StackPanel>
+          <TextBlock>Clouds:</TextBlock>
+          <TextBlock>{data.clouds}%</TextBlock>
+        </StackPanel>
+        <StackPanel>
+          <TextBlock>Wind speed:</TextBlock>
+          <TextBlock>{data ? Math.round(data.wind_speed) : ''} m/s</TextBlock>
+        </StackPanel>
+        <StackPanel>
+          <TextBlock>UV Index:</TextBlock>
+          <TextBlock>{data.uvi}</TextBlock>
+        </StackPanel>
+        <StackPanel>
+          <TextBlock>Sunrise:</TextBlock>
+          <TextBlock>
+            {new Date(data.sunrise * 1000).toLocaleString('en-GB', {
+              hour: '2-digit',
+              minute: '2-digit',
               hour12: false,
             })}
-          </label>
-        </div>
-        <div className="daily-details-grid-item">
-          <label>Sunset:</label>
-          <label>
-            {new Date(data.sunset * 1000).toLocaleString("en-GB", {
-              hour: "2-digit",
-              minute: "2-digit",
+          </TextBlock>
+        </StackPanel>
+        <StackPanel>
+          <TextBlock>Sunset:</TextBlock>
+          <TextBlock>
+            {new Date(data.sunset * 1000).toLocaleString('en-GB', {
+              hour: '2-digit',
+              minute: '2-digit',
               hour12: false,
             })}
-          </label>
-        </div>
-      </div>
-    </div>
+          </TextBlock>
+        </StackPanel>
+      </StackPanel>
+    </StackPanel>
   );
 };
 

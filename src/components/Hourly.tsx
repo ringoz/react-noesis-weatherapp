@@ -1,10 +1,16 @@
-import { useState } from "react";
+import {
+  Button,
+  ScrollViewer,
+  StackPanel,
+  TextBlock,
+} from '@ringozz/react-noesis';
+import { useState } from 'react';
 import {
   CurrentWeatherModel,
   HourlyWeatherModel,
   SettingsModel,
-} from "../models";
-import HourlyItem from "./HourlyItem";
+} from '../models';
+import HourlyItem from './HourlyItem';
 
 type HourlyProps = {
   settings: SettingsModel;
@@ -23,26 +29,18 @@ export const Hourly = ({ settings, data, clickHandler }: HourlyProps) => {
   };
 
   return (
-    <div className="hourly">
-      <label className="title">Hourly</label>
-      <div className="hourly-items-container">
-        <ScrollContainer>
+    <StackPanel>
+      <TextBlock>Hourly</TextBlock>
+      <ScrollViewer>
+        <StackPanel>
           {data.hourly.map((h) => (
-            <div
-              key={h.dt}
-              className={
-                activeIndex === h.dt
-                  ? "hourly-item-container active"
-                  : "hourly-item-container"
-              }
-              onClick={() => onClickHandler(h)}
-            >
+            <Button key={h.dt} onClick={() => onClickHandler(h)}>
               <HourlyItem settings={settings} data={h}></HourlyItem>
-            </div>
+            </Button>
           ))}
-        </ScrollContainer>
-      </div>
-    </div>
+        </StackPanel>
+      </ScrollViewer>
+    </StackPanel>
   );
 };
 
