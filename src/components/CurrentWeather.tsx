@@ -1,4 +1,5 @@
-import { CurrentWeatherModel, SettingsModel } from "../models";
+import { StackPanel } from '@ringozz/react-noesis';
+import { CurrentWeatherModel, SettingsModel } from '../models';
 
 type CurrentWeatherProps = {
   settings: SettingsModel;
@@ -7,14 +8,14 @@ type CurrentWeatherProps = {
 
 export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
   const weatherCode =
-    data.weather.icon !== ""
-      ? settings.theme === "dark"
+    data.weather.icon !== ''
+      ? settings.theme === 'dark'
         ? `${data.weather.icon}_n`
         : `${data.weather.icon}`
-      : "01d";
-  const unitSymbol = settings.unit === "metric" ? "C" : "F";
+      : '01d';
+  const unitSymbol = settings.unit === 'metric' ? 'C' : 'F';
   return (
-    <div className="current-weather">
+    <StackPanel>
       <div className="image">
         <img
           src={require(`../../resources/icon_${weatherCode}.png`)}
@@ -31,7 +32,7 @@ export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
         </label>
         <label className="description">{data.weather.description}</label>
       </div>
-    </div>
+    </StackPanel>
   );
 };
 

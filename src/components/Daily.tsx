@@ -1,7 +1,8 @@
-import { useState } from "react";
-import DailyItem from "./DailyItem";
-import { DailyWeatherModel, SettingsModel } from "../models";
-import { DailyItemDetails } from "./DailyItemDetails";
+import { useState } from 'react';
+import DailyItem from './DailyItem';
+import { DailyWeatherModel, SettingsModel } from '../models';
+import { DailyItemDetails } from './DailyItemDetails';
+import { StackPanel, TextBlock } from '@ringozz/react-noesis';
 
 type DailyProps = {
   settings: SettingsModel;
@@ -19,29 +20,23 @@ export const Daily = ({ settings, data }: DailyProps) => {
     }
   };
   return (
-    <div className="daily">
-      <label className="title">Daily</label>
-      <div className="daily-items-container">
+    <StackPanel>
+      <TextBlock>Daily</TextBlock>
+      <StackPanel>
         {data.daily.map((d) => (
-          <div key={d.dt}>
+          <StackPanel key={d.dt}>
             <DailyItem
               settings={settings}
               data={d}
               onClick={() => clickHandler(d)}
             ></DailyItem>
-            <div
-              className={
-                activeIndex === d.dt
-                  ? "daily-item-header active"
-                  : "daily-item-header"
-              }
-            >
+            <StackPanel>
               <DailyItemDetails data={d}></DailyItemDetails>
-            </div>
-          </div>
+            </StackPanel>
+          </StackPanel>
         ))}
-      </div>
-    </div>
+      </StackPanel>
+    </StackPanel>
   );
 };
 
