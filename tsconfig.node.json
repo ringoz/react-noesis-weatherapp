@@ -5,8 +5,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true,
-    "types": ["vite/client"]
+    "allowSyntheticDefaultImports": true
   },
   "include": ["vite.config.ts"]
 }

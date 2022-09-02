@@ -4,8 +4,8 @@ import { useErrorHandler } from "react-error-boundary";
 import { EmptyLocationModel, LocationModel } from "../models";
 
 export const useLocation = (locationName: string, useMockData: boolean) => {
-  const apiKey = process.env.REACT_APP_GEOLOCATION_API_KEY;
-  const geocodeBaseUrl = process.env.REACT_APP_GEOLOCATION_GEOCODE_BASEURL;
+  const apiKey = import.meta.env.REACT_APP_GEOLOCATION_API_KEY;
+  const geocodeBaseUrl = import.meta.env.REACT_APP_GEOLOCATION_GEOCODE_BASEURL;
 
   const [location, setLocation] = useState<LocationModel>(EmptyLocationModel);
   const handleError = useErrorHandler();

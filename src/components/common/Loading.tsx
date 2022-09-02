@@ -1,3 +1,4 @@
+import { TextBlock } from "@ringozz/react-noesis";
 import { ReactElement } from "react";
 
 type LoadingProps = {
@@ -7,7 +8,7 @@ type LoadingProps = {
 
 export const Loading = ({ children, isLoading }: LoadingProps) => {
   return (
-    <>{isLoading ? <div className="loading">Loading...</div> : children}</>
+    <>{isLoading ? <TextBlock>Loading...</TextBlock> : children}</>
   );
 };
 

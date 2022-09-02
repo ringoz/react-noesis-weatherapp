@@ -17,8 +17,8 @@ export const useWeather = (
   unit: string,
   useMockData: boolean
 ) => {
-  const baseUrl = process.env.REACT_APP_OPENWEATHER_API_BASEURL;
-  const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
+  const baseUrl = import.meta.env.REACT_APP_OPENWEATHER_API_BASEURL;
+  const apiKey = import.meta.env.REACT_APP_OPENWEATHER_API_KEY;
 
   const { location } = useLocation(locationName, useMockData);
 

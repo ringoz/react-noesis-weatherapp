@@ -1,3 +1,4 @@
+import { Grid, StackPanel } from "@ringozz/react-noesis";
 import { useEffect, useState } from "react";
 import { useWeather } from "../hooks";
 import {
@@ -41,9 +42,9 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
 
   return (
     <MockData useMockData={useMockData}>
-      <div className="container">
+      <Grid>
         <Loading isLoading={isLoading}>
-          <div className="grid-container">
+          <StackPanel>
             <Header
               locality={location.locality}
               country={location.country}
@@ -65,9 +66,9 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
               clickHandler={hourlyItemClickHandler}
             ></Hourly>
             <Daily settings={settings} data={dailyWeather}></Daily>
-          </div>
+          </StackPanel>
         </Loading>
-      </div>
+      </Grid>
     </MockData>
   );
 };

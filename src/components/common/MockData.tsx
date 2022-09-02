@@ -1,3 +1,4 @@
+import { Hyperlink, TextBlock } from "@ringozz/react-noesis";
 import { ReactElement } from "react";
 
 type MockDataProps = {
@@ -10,14 +11,14 @@ export const MockData = ({ children, useMockData }: MockDataProps) => {
     <>
       {useMockData ? (
         <>
-          <div className="info-popup">
+          <TextBlock>
             The application is running in demo mode. To run the application with
             real data please check the{" "}
-            <a href="https://github.com/gheorghedarle/React-WeatherApp">
+            <Hyperlink NavigateUri="https://github.com/gheorghedarle/React-WeatherApp">
               documentation
-            </a>
+            </Hyperlink>
             .
-          </div>
+          </TextBlock>
           {children}
         </>
       ) : (
