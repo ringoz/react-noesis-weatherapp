@@ -17,7 +17,7 @@ export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
   return (
     <StackPanel>
       <StackPanel>
-        <Image Source={require(`../resources/icon_${weatherCode}.png`)} />
+        <Image Source={import(`../resources/icon_${weatherCode}.png`)} />
       </StackPanel>
       <StackPanel>
         <TextBlock>
