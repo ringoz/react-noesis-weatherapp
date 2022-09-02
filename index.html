@@ -27,6 +27,9 @@
           splash.style['transition'] = 'opacity 0.25s ease-in';
           splash.style['opacity'] = 0;
         }
+      }).catch((e) => {
+        console.error(e);
+        alert(e);
       });
     </script>
   </body>
