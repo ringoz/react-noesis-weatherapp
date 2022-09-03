@@ -19,7 +19,12 @@ export const HourlyItem = ({ settings, data }: HourlyItemProps) => {
       <TextBlock HorizontalAlignment={HorizontalAlignment.Center}>
         {new Date(data.dt * 1000).getHours()}:00
       </TextBlock>
-      <Image Margin={10} Height={40} Source={`icon_${weatherCode}.png`} />
+      <Image
+        Margin={8}
+        Width={40}
+        Height={40}
+        Source={`icon_${weatherCode}.png`}
+      />
       <TextBlock HorizontalAlignment={HorizontalAlignment.Center}>
         {Math.round(data.temp)}°{unitSymbol}
       </TextBlock>

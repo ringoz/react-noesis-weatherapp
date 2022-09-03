@@ -36,6 +36,7 @@ export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
         <Image
           Grid$Column={0}
           HorizontalAlignment={HorizontalAlignment.Left}
+          Width={40}
           Height={40}
           Source={`icon_${weatherCode}.png`}
         />

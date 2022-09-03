@@ -1,18 +1,18 @@
-import { Grid, StackPanel } from "@ringozz/react-noesis";
-import { useEffect, useState } from "react";
-import { useWeather } from "../hooks";
+import { Grid, StackPanel } from '@ringozz/react-noesis';
+import { useEffect, useState } from 'react';
+import { useWeather } from '../hooks';
 import {
   CurrentWeatherModel,
   EmptyCurrentWeather,
   SettingsModel,
-} from "../models";
-import { Loading } from "./common/Loading";
-import MockData from "./common/MockData";
-import CurrentWeather from "./CurrentWeather";
-import CurrentWeatherDetails from "./CurrentWeatherDetails";
-import Daily from "./Daily";
-import Header from "./Header";
-import Hourly from "./Hourly";
+} from '../models';
+import { Loading } from './common/Loading';
+import MockData from './common/MockData';
+import CurrentWeather from './CurrentWeather';
+import CurrentWeatherDetails from './CurrentWeatherDetails';
+import Daily from './Daily';
+import Header from './Header';
+import Hourly from './Hourly';
 
 type ContainerProps = {
   settings: SettingsModel;
@@ -23,7 +23,7 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
   const useMockData: boolean = true;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =
     useState(EmptyCurrentWeather);
-  const [currentLocationName, setCurrentLocationName] = useState<string>("");
+  const [currentLocationName, setCurrentLocationName] = useState<string>('');
 
   const { isLoading, location, currentWeather, hourlyWeather, dailyWeather } =
     useWeather(currentLocationName, settings.unit, useMockData);
@@ -42,7 +42,7 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
 
   return (
     <MockData useMockData={useMockData}>
-      <Grid>
+      <Grid Margin={8}>
         <Loading isLoading={isLoading}>
           <StackPanel>
             <Header
