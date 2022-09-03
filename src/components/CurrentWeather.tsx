@@ -16,12 +16,7 @@ type CurrentWeatherProps = {
 };
 
 export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
-  const weatherCode =
-    data.weather.icon !== ''
-      ? settings.theme === 'dark'
-        ? `${data.weather.icon}_n`
-        : `${data.weather.icon}`
-      : '01d';
+  const weatherCode = data.weather.icon || '01d';
   const unitSymbol = settings.unit === 'metric' ? 'C' : 'F';
   return (
     <Grid Margin={8}>

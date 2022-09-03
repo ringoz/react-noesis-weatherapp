@@ -12,10 +12,7 @@ type HourlyItemProps = {
 };
 
 export const HourlyItem = ({ settings, data }: HourlyItemProps) => {
-  const weatherCode =
-    settings.theme === 'dark'
-      ? `${data.weather.icon}_n`
-      : `${data.weather.icon}`;
+  const weatherCode = data.weather.icon;
   const unitSymbol = settings.unit === 'metric' ? 'C' : 'F';
   return (
     <StackPanel>
