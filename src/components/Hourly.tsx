@@ -1,5 +1,6 @@
 import {
   Button,
+  DynamicResource,
   FontWeight,
   HeaderedContentControl,
   Orientation,
@@ -7,6 +8,7 @@ import {
   ScrollBarVisibility,
   ScrollViewer,
   StackPanel,
+  StaticResource,
   TextBlock,
 } from '@ringozz/react-noesis';
 import { useState } from 'react';
@@ -47,7 +49,16 @@ export const Hourly = ({ settings, data, clickHandler }: HourlyProps) => {
       >
         <StackPanel Orientation={Orientation.Horizontal}>
           {data.hourly.map((h) => (
-            <Button key={h.dt} onClick={() => onClickHandler(h)} Margin={4}>
+            <Button
+              key={h.dt}
+              IsEnabled={activeIndex !== h.dt}
+              TextBlock$Foreground={DynamicResource('Brush.Foreground.Normal')}
+              TextBlock$FontWeight={
+                activeIndex === h.dt ? FontWeight.Bold : FontWeight.Normal
+              }
+              onClick={() => onClickHandler(h)}
+              Margin={4}
+            >
               <HourlyItem settings={settings} data={h}></HourlyItem>
             </Button>
           ))}

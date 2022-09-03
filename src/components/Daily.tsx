@@ -39,9 +39,13 @@ export const Daily = ({ settings, data }: DailyProps) => {
               settings={settings}
               data={d}
               onClick={() => clickHandler(d)}
-            ></DailyItem>
-            <StackPanel Visibility={Visibility.Collapsed}>
-              <DailyItemDetails data={d}></DailyItemDetails>
+            />
+            <StackPanel
+              Visibility={
+                activeIndex === d.dt ? Visibility.Visible : Visibility.Collapsed
+              }
+            >
+              <DailyItemDetails data={d} />
             </StackPanel>
           </StackPanel>
         ))}
