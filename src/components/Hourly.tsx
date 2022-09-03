@@ -52,6 +52,11 @@ export const Hourly = ({ settings, data, clickHandler }: HourlyProps) => {
             <Button
               key={h.dt}
               IsEnabled={activeIndex !== h.dt}
+              Background={DynamicResource(
+                activeIndex === h.dt
+                  ? 'Brush.TextBox.Focused'
+                  : 'Brush.Track.Normal'
+              )}
               TextBlock$Foreground={DynamicResource('Brush.Foreground.Normal')}
               TextBlock$FontWeight={
                 activeIndex === h.dt ? FontWeight.Bold : FontWeight.Normal

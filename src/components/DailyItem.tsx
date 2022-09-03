@@ -1,6 +1,7 @@
 import {
   Button,
   ColumnDefinition,
+  DynamicResource,
   FontWeight,
   Grid,
   HorizontalAlignment,
@@ -25,6 +26,7 @@ export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
       Margin={4}
       onClick={onClick}
       HorizontalContentAlignment={HorizontalAlignment.Stretch}
+      Background={DynamicResource('Brush.Track.Normal')}
     >
       <Grid>
         <Grid.ColumnDefinitions>
