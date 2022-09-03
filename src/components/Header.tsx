@@ -1,9 +1,11 @@
 import {
   Button,
-  GradientStop,
+  ColumnDefinition,
+  FontWeight,
   Grid,
+  HorizontalAlignment,
   Key,
-  LinearGradientBrush,
+  Orientation,
   StackPanel,
   TextBlock,
   TextBox,
@@ -52,15 +54,24 @@ export const Header = ({
   };
 
   return (
-    <StackPanel>
-      <StackPanel>
-        <Grid MinHeight="8"></Grid>
-        <TextBlock>{locality}</TextBlock>
-        <TextBlock>{country}</TextBlock>
+    <Grid Margin={8}>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+      <StackPanel Grid$Column={0}>
+        <Grid MinHeight={8}></Grid>
+        <TextBlock FontSize={40} FontWeight={FontWeight.Bold}>
+          {locality}
+        </TextBlock>
+        <TextBlock FontSize={20}>{country}</TextBlock>
         <TextBlock>{getFormatedDate()}</TextBlock>
       </StackPanel>
-      <StackPanel>
-        <StackPanel>
+      <StackPanel Grid$Column={1}>
+        <StackPanel
+          Orientation={Orientation.Horizontal}
+          HorizontalAlignment={HorizontalAlignment.Right}
+        >
           <Button
             onClick={() => {
               changeSettings({ unit: 'metric' });
@@ -75,19 +86,17 @@ export const Header = ({
           >
             °F
           </Button>
+          <Button
+            onClick={() => {
+              if (settings.theme === 'dark') changeSettings({ theme: 'light' });
+              else changeSettings({ theme: 'dark' });
+            }}
+          >
+            <FontAwesomeIcon
+              icon={settings.theme === 'dark' ? faSun : faMoon}
+            ></FontAwesomeIcon>
+          </Button>
         </StackPanel>
-        <Button
-          onClick={() => {
-            if (settings.theme === 'dark') changeSettings({ theme: 'light' });
-            else changeSettings({ theme: 'dark' });
-          }}
-        >
-          <FontAwesomeIcon
-            icon={settings.theme === 'dark' ? faSun : faMoon}
-          ></FontAwesomeIcon>
-        </Button>
-      </StackPanel>
-      <StackPanel>
         <TextBox
           Placeholder="Enter your location"
           onKeyDown={(e) => {
@@ -97,7 +106,7 @@ export const Header = ({
           }}
         ></TextBox>
       </StackPanel>
-    </StackPanel>
+    </Grid>
   );
 };
 
