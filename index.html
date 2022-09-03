@@ -28,8 +28,8 @@
           splash.style['opacity'] = 0;
         }
       }).catch((e) => {
-        console.error(e);
         alert(e);
+        throw e;
       });
     </script>
   </body>
