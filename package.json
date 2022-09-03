@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "vite --force --port=8001 --strictPort",
+    "start": "vite --port=8001 --strictPort",
     "build": "vite build"
   },
   "dependencies": {
