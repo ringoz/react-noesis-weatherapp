@@ -1,6 +1,9 @@
 import {
   Button,
+  GradientStop,
+  Grid,
   Key,
+  LinearGradientBrush,
   StackPanel,
   TextBlock,
   TextBox,
@@ -51,6 +54,7 @@ export const Header = ({
   return (
     <StackPanel>
       <StackPanel>
+        <Grid MinHeight="8"></Grid>
         <TextBlock>{locality}</TextBlock>
         <TextBlock>{country}</TextBlock>
         <TextBlock>{getFormatedDate()}</TextBlock>
