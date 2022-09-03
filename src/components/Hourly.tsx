@@ -8,7 +8,6 @@ import {
   ScrollBarVisibility,
   ScrollViewer,
   StackPanel,
-  StaticResource,
   TextBlock,
 } from '@ringozz/react-noesis';
 import { useState } from 'react';
