@@ -3,6 +3,8 @@ import {
   FontWeight,
   HeaderedContentControl,
   Orientation,
+  PanningMode,
+  ScrollBarVisibility,
   ScrollViewer,
   StackPanel,
   TextBlock,
@@ -38,7 +40,11 @@ export const Hourly = ({ settings, data, clickHandler }: HourlyProps) => {
           Hourly
         </TextBlock>
       </HeaderedContentControl.Header>
-      <ScrollViewer Margin={4}>
+      <ScrollViewer
+        Margin={4}
+        PanningMode={PanningMode.HorizontalOnly}
+        HorizontalScrollBarVisibility={ScrollBarVisibility.Hidden}
+      >
         <StackPanel Orientation={Orientation.Horizontal}>
           {data.hourly.map((h) => (
             <Button key={h.dt} onClick={() => onClickHandler(h)} Margin={4}>

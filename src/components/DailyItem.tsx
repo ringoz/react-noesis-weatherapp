@@ -33,17 +33,12 @@ export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
     >
       <Grid>
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width={60} />
+          <ColumnDefinition Width={50} />
           <ColumnDefinition Width="1*" />
           <ColumnDefinition Width="2*" />
           <ColumnDefinition Width={100} />
         </Grid.ColumnDefinitions>
-        <Image
-          Grid$Column={0}
-          HorizontalAlignment={HorizontalAlignment.Left}
-          Height={40}
-          Source={`icon_${weatherCode}.png`}
-        />
+        <Image Grid$Column={0} Height={40} Source={`icon_${weatherCode}.png`} />
         <TextBlock
           Grid$Column={1}
           VerticalAlignment={VerticalAlignment.Center}
