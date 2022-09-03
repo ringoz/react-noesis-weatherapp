@@ -9,14 +9,18 @@
     <style>
       * { margin: 0; padding: 0; }
       html, body, .app { width: 100vw; height: 100vh; overflow: hidden; outline: none; }
-      canvas.app { border: 0px none; background-color: black; touch-action: none; }
-      figure.app { position: absolute; top: 0; left: 0; bottom: 0; right: 0; }
+      .app { background-color: black; }
+      @media (prefers-color-scheme: light) {
+        .app { background-color: white; }
+      }
+      canvas.app { image-rendering: pixelated; border: 0px none; touch-action: none; }
+      figure.app { background-image: url('icon_01d.png'); background-position: center; background-size: 128px; background-repeat: no-repeat; position: absolute; top: 0; left: 0; bottom: 0; right: 0; }
     </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <canvas class="app" id="canvas" style="image-rendering: pixelated;" onclick="window.focus()" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
-    <figure class="app" id="splash" style="background: black url('icon_01d.png') center / 128px no-repeat;"></figure>
+    <canvas class="app" id="canvas" onclick="window.focus()" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+    <figure class="app" id="splash"></figure>
     <script async type="module" src="./src/index.ts"></script>
     <script async type="module">
       import init from './src/index.ts';
