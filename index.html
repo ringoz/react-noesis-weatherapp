@@ -17,9 +17,9 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <canvas class="app" id="canvas" style="image-rendering: pixelated;" onclick="window.focus()" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
     <figure class="app" id="splash" style="background: black url('./src/logo.svg') center / 128px no-repeat;"></figure>
-    <script async type="module" src="./src/index.tsx"></script>
+    <script async type="module" src="./src/index.ts"></script>
     <script async type="module">
-      import init from './src/index.tsx';
+      import init from './src/index.ts';
       init.then(() => {
         const splash = document.getElementById('splash');
         if (splash) {
