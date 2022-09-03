@@ -9,7 +9,7 @@ export const App = () => {
 
   return (
     <ErrorBoundary FallbackComponent={Error} onError={ErrorHandler}>
-      <Grid Background={DynamicResource('Brush.Window.Background')}>
+      <Grid Background={DynamicResource('Brush.TextBox.Normal')}>
         <Container
           settings={settings}
           changeSettings={changeSettings}

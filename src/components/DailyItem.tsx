@@ -1,4 +1,15 @@
-import { Button, Image, StackPanel, TextBlock } from '@ringozz/react-noesis';
+import {
+  Button,
+  ColumnDefinition,
+  FontWeight,
+  Grid,
+  HorizontalAlignment,
+  Image,
+  RowDefinition,
+  StackPanel,
+  TextBlock,
+  VerticalAlignment,
+} from '@ringozz/react-noesis';
 import { SettingsModel } from '../models';
 import { DailyWeatherDetailsModel } from '../models/DailyWeatherDetailsModel';
 
@@ -15,20 +26,49 @@ export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
       : `${data.weather.icon}`;
   const unitSymbol = settings.unit === 'metric' ? 'C' : 'F';
   return (
-    <Button onClick={onClick}>
-      <StackPanel>
-        <Image Source={`icon_${weatherCode}.png`} />
-        <TextBlock>
+    <Button
+      Margin={4}
+      onClick={onClick}
+      HorizontalContentAlignment={HorizontalAlignment.Stretch}
+    >
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width={60} />
+          <ColumnDefinition Width="1*" />
+          <ColumnDefinition Width="2*" />
+          <ColumnDefinition Width={100} />
+        </Grid.ColumnDefinitions>
+        <Image
+          Grid$Column={0}
+          HorizontalAlignment={HorizontalAlignment.Left}
+          Height={40}
+          Source={`icon_${weatherCode}.png`}
+        />
+        <TextBlock
+          Grid$Column={1}
+          VerticalAlignment={VerticalAlignment.Center}
+          FontWeight={FontWeight.Bold}
+        >
           {new Date(data.dt * 1000).toLocaleString('en-GB', {
             weekday: 'long',
           })}
         </TextBlock>
-        <TextBlock>{data.weather.description}</TextBlock>
-        <TextBlock>
+        <TextBlock
+          Grid$Column={2}
+          VerticalAlignment={VerticalAlignment.Center}
+          HorizontalAlignment={HorizontalAlignment.Right}
+        >
+          {data.weather.description}
+        </TextBlock>
+        <TextBlock
+          Grid$Column={3}
+          VerticalAlignment={VerticalAlignment.Center}
+          HorizontalAlignment={HorizontalAlignment.Right}
+        >
           {Math.round(data.minTemp)}°{unitSymbol} / {Math.round(data.maxTemp)}°
           {unitSymbol}
         </TextBlock>
-      </StackPanel>
+      </Grid>
     </Button>
   );
 };

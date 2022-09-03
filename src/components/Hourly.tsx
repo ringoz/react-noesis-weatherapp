@@ -1,5 +1,8 @@
 import {
   Button,
+  FontWeight,
+  HeaderedContentControl,
+  Orientation,
   ScrollViewer,
   StackPanel,
   TextBlock,
@@ -29,18 +32,22 @@ export const Hourly = ({ settings, data, clickHandler }: HourlyProps) => {
   };
 
   return (
-    <StackPanel>
-      <TextBlock>Hourly</TextBlock>
-      <ScrollViewer>
-        <StackPanel>
+    <HeaderedContentControl Margin={8}>
+      <HeaderedContentControl.Header>
+        <TextBlock FontSize={24} FontWeight={FontWeight.Bold}>
+          Hourly
+        </TextBlock>
+      </HeaderedContentControl.Header>
+      <ScrollViewer Margin={4}>
+        <StackPanel Orientation={Orientation.Horizontal}>
           {data.hourly.map((h) => (
-            <Button key={h.dt} onClick={() => onClickHandler(h)}>
+            <Button key={h.dt} onClick={() => onClickHandler(h)} Margin={4}>
               <HourlyItem settings={settings} data={h}></HourlyItem>
             </Button>
           ))}
         </StackPanel>
       </ScrollViewer>
-    </StackPanel>
+    </HeaderedContentControl>
   );
 };
 

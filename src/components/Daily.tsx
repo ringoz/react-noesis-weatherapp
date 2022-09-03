@@ -2,7 +2,13 @@ import { useState } from 'react';
 import DailyItem from './DailyItem';
 import { DailyWeatherModel, SettingsModel } from '../models';
 import { DailyItemDetails } from './DailyItemDetails';
-import { StackPanel, TextBlock } from '@ringozz/react-noesis';
+import {
+  FontWeight,
+  HeaderedContentControl,
+  StackPanel,
+  TextBlock,
+  Visibility,
+} from '@ringozz/react-noesis';
 
 type DailyProps = {
   settings: SettingsModel;
@@ -20,9 +26,13 @@ export const Daily = ({ settings, data }: DailyProps) => {
     }
   };
   return (
-    <StackPanel>
-      <TextBlock>Daily</TextBlock>
-      <StackPanel>
+    <HeaderedContentControl Margin={8}>
+      <HeaderedContentControl.Header>
+        <TextBlock FontSize={24} FontWeight={FontWeight.Bold}>
+          Daily
+        </TextBlock>
+      </HeaderedContentControl.Header>
+      <StackPanel Margin={4}>
         {data.daily.map((d) => (
           <StackPanel key={d.dt}>
             <DailyItem
@@ -30,13 +40,13 @@ export const Daily = ({ settings, data }: DailyProps) => {
               data={d}
               onClick={() => clickHandler(d)}
             ></DailyItem>
-            <StackPanel>
+            <StackPanel Visibility={Visibility.Collapsed}>
               <DailyItemDetails data={d}></DailyItemDetails>
             </StackPanel>
           </StackPanel>
         ))}
       </StackPanel>
-    </StackPanel>
+    </HeaderedContentControl>
   );
 };
 
