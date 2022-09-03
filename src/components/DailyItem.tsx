@@ -17,7 +17,7 @@ export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
   return (
     <Button onClick={onClick}>
       <StackPanel>
-        <Image Source={import(`../resources/icon_${weatherCode}.png`)} />
+        <Image Source={`icon_${weatherCode}.png`} />
         <TextBlock>
           {new Date(data.dt * 1000).toLocaleString('en-GB', {
             weekday: 'long',

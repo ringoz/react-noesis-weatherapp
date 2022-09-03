@@ -15,7 +15,7 @@ export const HourlyItem = ({ settings, data }: HourlyItemProps) => {
   return (
     <StackPanel>
       <TextBlock>{new Date(data.dt * 1000).getHours()}:00</TextBlock>
-      <Image Source={import(`../resources/icon_${weatherCode}.png`)} />
+      <Image Source={`icon_${weatherCode}.png`} />
       <TextBlock>
         {Math.round(data.temp)}°{unitSymbol}
       </TextBlock>

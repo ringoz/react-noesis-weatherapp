@@ -30,7 +30,7 @@ export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
       <StackPanel Grid$Column={0}>
-        <Image Source={`../resources/icon_${weatherCode}.png`} />
+        <Image Source={`icon_${weatherCode}.png`} />
       </StackPanel>
       <StackPanel
         Grid$Column={1}
