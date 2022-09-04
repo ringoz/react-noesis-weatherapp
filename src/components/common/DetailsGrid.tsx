@@ -2,9 +2,8 @@ import {
   ColumnDefinition,
   DynamicResource,
   Grid,
-  Orientation,
+  HorizontalAlignment,
   RowDefinition,
-  StackPanel,
   TextBlock,
 } from '@ringozz/react-noesis';
 
@@ -27,18 +26,28 @@ export const DetailsGrid = ({ details }: DetailsGridProps) => {
         ))}
       </Grid.RowDefinitions>
       {details.map((val, idx) => (
-        <StackPanel
+        <Grid
           Grid$Column={idx % columns}
           Grid$Row={idx / columns}
-          Orientation={Orientation.Horizontal}
+          Margin={[8, 0]}
         >
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
           <TextBlock
+            Grid$Column={0}
             Foreground={DynamicResource('Brush.Foreground.Placeholder')}
           >
             {val.substring(0, val.indexOf(':') + 1)}
           </TextBlock>
-          <TextBlock>{val.substring(val.indexOf(':') + 1)}</TextBlock>
-        </StackPanel>
+          <TextBlock
+            Grid$Column={1}
+            HorizontalAlignment={HorizontalAlignment.Right}
+          >
+            {val.substring(val.indexOf(':') + 1)}
+          </TextBlock>
+        </Grid>
       ))}
     </Grid>
   );
