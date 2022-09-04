@@ -3,9 +3,13 @@ import {
   ColumnDefinition,
   DynamicResource,
   Grid,
+  HorizontalAlignment,
+  LineBreak,
   Orientation,
   RowDefinition,
+  Span,
   StackPanel,
+  TextAlignment,
   TextBlock,
 } from '@ringozz/react-noesis';
 import { CurrentWeatherDetailsModel } from '../models';
@@ -32,7 +36,11 @@ export const CurrentWeatherDetails = ({ data }: CurrentWeatherProps) => {
           Grid$Row={0}
           Orientation={Orientation.Horizontal}
         >
-          <TextBlock>Rain:</TextBlock>
+          <TextBlock
+            Foreground={DynamicResource('Brush.Foreground.Placeholder')}
+          >
+            Rain:
+          </TextBlock>
           <TextBlock>{data?.rain.toFixed(2)}%</TextBlock>
         </StackPanel>
         <StackPanel
@@ -40,7 +48,11 @@ export const CurrentWeatherDetails = ({ data }: CurrentWeatherProps) => {
           Grid$Row={0}
           Orientation={Orientation.Horizontal}
         >
-          <TextBlock>Pressure:</TextBlock>
+          <TextBlock
+            Foreground={DynamicResource('Brush.Foreground.Placeholder')}
+          >
+            Pressure:
+          </TextBlock>
           <TextBlock>{data?.pressure}hPa</TextBlock>
         </StackPanel>
         <StackPanel
@@ -48,7 +60,11 @@ export const CurrentWeatherDetails = ({ data }: CurrentWeatherProps) => {
           Grid$Row={1}
           Orientation={Orientation.Horizontal}
         >
-          <TextBlock>Humidity:</TextBlock>
+          <TextBlock
+            Foreground={DynamicResource('Brush.Foreground.Placeholder')}
+          >
+            Humidity:
+          </TextBlock>
           <TextBlock>{data?.humidity}%</TextBlock>
         </StackPanel>
         <StackPanel
@@ -56,7 +72,11 @@ export const CurrentWeatherDetails = ({ data }: CurrentWeatherProps) => {
           Grid$Row={1}
           Orientation={Orientation.Horizontal}
         >
-          <TextBlock>Visibility:</TextBlock>
+          <TextBlock
+            Foreground={DynamicResource('Brush.Foreground.Placeholder')}
+          >
+            Visibility:
+          </TextBlock>
           <TextBlock>{data?.visibility} km</TextBlock>
         </StackPanel>
         <StackPanel
@@ -64,7 +84,11 @@ export const CurrentWeatherDetails = ({ data }: CurrentWeatherProps) => {
           Grid$Row={2}
           Orientation={Orientation.Horizontal}
         >
-          <TextBlock>Wind speed:</TextBlock>
+          <TextBlock
+            Foreground={DynamicResource('Brush.Foreground.Placeholder')}
+          >
+            Wind speed:
+          </TextBlock>
           <TextBlock>{data ? Math.round(data.wind_speed) : ''} m/s</TextBlock>
         </StackPanel>
       </Grid>

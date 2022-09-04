@@ -1,6 +1,7 @@
 import {
   Button,
   ColumnDefinition,
+  DynamicResource,
   FontWeight,
   Grid,
   HorizontalAlignment,
@@ -65,7 +66,9 @@ export const Header = ({
           {locality}
         </TextBlock>
         <TextBlock FontSize={20}>{country}</TextBlock>
-        <TextBlock>{getFormatedDate()}</TextBlock>
+        <TextBlock Foreground={DynamicResource('Brush.Foreground.Placeholder')}>
+          {getFormatedDate()}
+        </TextBlock>
       </StackPanel>
       <StackPanel Grid$Column={1}>
         <StackPanel
