@@ -26,7 +26,7 @@ export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
       <StackPanel Grid$Column={0}>
-        <Image Width={120} Height={120} Source={`icon_${weatherCode}.png`} />
+        <Image Width={120} Height={120} Source={`assets/icon_${weatherCode}.png`} />
       </StackPanel>
       <StackPanel Grid$Column={1}>
         <TextBlock

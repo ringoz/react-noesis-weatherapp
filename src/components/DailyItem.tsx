@@ -40,7 +40,7 @@ export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
           HorizontalAlignment={HorizontalAlignment.Left}
           Width={40}
           Height={40}
-          Source={`icon_${weatherCode}.png`}
+          Source={`assets/icon_${weatherCode}.png`}
         />
         <TextBlock
           Grid$Column={1}

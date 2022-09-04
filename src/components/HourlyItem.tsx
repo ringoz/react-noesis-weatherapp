@@ -23,7 +23,7 @@ export const HourlyItem = ({ settings, data }: HourlyItemProps) => {
         Margin={8}
         Width={40}
         Height={40}
-        Source={`icon_${weatherCode}.png`}
+        Source={`assets/icon_${weatherCode}.png`}
       />
       <TextBlock HorizontalAlignment={HorizontalAlignment.Center}>
         {Math.round(data.temp)}°{unitSymbol}

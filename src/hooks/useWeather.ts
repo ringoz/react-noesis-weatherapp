@@ -37,7 +37,7 @@ export const useWeather = (
     setIsLoading(true);
     if (location) {
       const url = useMockData
-        ? `./mock-data/weather_${unit}.json`
+        ? `assets/mock-data/weather_${unit}.json`
         : `${baseUrl}?lat=${location.position.latitude}&lon=${location.position.longitude}&units=${unit}&exclude=minutely,alerts&appid=${apiKey}`;
       axios
         .get(url)
