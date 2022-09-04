@@ -16,17 +16,21 @@ export const DetailsGrid = ({ details }: DetailsGridProps) => {
   return (
     <Grid Margin={8}>
       <Grid.ColumnDefinitions>
-        {Array.from({ length: columns }, () => (
-          <ColumnDefinition />
+        {Array.from({ length: columns }, (_, idx) => (
+          <ColumnDefinition key={idx} />
         ))}
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
-        {Array.from({ length: Math.ceil(details.length / columns) }, () => (
-          <RowDefinition />
-        ))}
+        {Array.from(
+          { length: Math.ceil(details.length / columns) },
+          (_, idx) => (
+            <RowDefinition key={idx} />
+          )
+        )}
       </Grid.RowDefinitions>
       {details.map((val, idx) => (
         <Grid
+          key={idx}
           Grid$Column={idx % columns}
           Grid$Row={idx / columns}
           Margin={[8, 0]}
