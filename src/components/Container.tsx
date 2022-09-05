@@ -7,7 +7,6 @@ import {
   SettingsModel,
 } from '../models';
 import { Loading } from './common/Loading';
-import MockData from './common/MockData';
 import CurrentWeather from './CurrentWeather';
 import CurrentWeatherDetails from './CurrentWeatherDetails';
 import Daily from './Daily';
@@ -41,34 +40,32 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
   };
 
   return (
-    <MockData useMockData={useMockData}>
-      <Grid Margin={8}>
-        <Loading isLoading={isLoading}>
-          <StackPanel>
-            <Header
-              locality={location.locality}
-              country={location.country}
-              data={currentWeatherSelectedItem}
-              settings={settings}
-              changeSettings={changeSettings}
-              changeLocation={changeLocationHandler}
-            ></Header>
-            <CurrentWeather
-              settings={settings}
-              data={currentWeatherSelectedItem}
-            ></CurrentWeather>
-            <CurrentWeatherDetails
-              data={currentWeatherSelectedItem.details}
-            ></CurrentWeatherDetails>
-            <Hourly
-              settings={settings}
-              data={hourlyWeather}
-              clickHandler={hourlyItemClickHandler}
-            ></Hourly>
-            <Daily settings={settings} data={dailyWeather}></Daily>
-          </StackPanel>
-        </Loading>
-      </Grid>
-    </MockData>
+    <Grid Margin={8}>
+      <Loading isLoading={isLoading}>
+        <StackPanel>
+          <Header
+            locality={location.locality}
+            country={location.country}
+            data={currentWeatherSelectedItem}
+            settings={settings}
+            changeSettings={changeSettings}
+            changeLocation={changeLocationHandler}
+          ></Header>
+          <CurrentWeather
+            settings={settings}
+            data={currentWeatherSelectedItem}
+          ></CurrentWeather>
+          <CurrentWeatherDetails
+            data={currentWeatherSelectedItem.details}
+          ></CurrentWeatherDetails>
+          <Hourly
+            settings={settings}
+            data={hourlyWeather}
+            clickHandler={hourlyItemClickHandler}
+          ></Hourly>
+          <Daily settings={settings} data={dailyWeather}></Daily>
+        </StackPanel>
+      </Loading>
+    </Grid>
   );
 };
