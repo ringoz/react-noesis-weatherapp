@@ -4,7 +4,7 @@
 
 ![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)
 
-Based on [React-WeatherApp](https://github.com/gheorghedarle/Xamarin-WeatherApp) by @gheorghedarle
+Based on [React-WeatherApp](https://github.com/gheorghedarle/React-WeatherApp) by @gheorghedarle
 
 **Weather App** is a simple weather app developed in typescript using React and NoesisGUI. The app allows you to see the weather from your current location or another location around the globe using **OpenWeather Api** and **Google Maps Api**. Using **One Call API** the app displays the current weather, 24 hours and 6 days forecast. You can change the unit system from metric to imperial. The app is available in **light** and **dark mode**.
 
