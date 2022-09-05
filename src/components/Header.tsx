@@ -14,12 +14,6 @@ import {
 } from '@ringozz/react-noesis';
 import { CurrentWeatherModel, SettingsModel } from '../models';
 
-const faSun = 'Sun';
-const faMoon = 'Moon';
-const FontAwesomeIcon = ({ icon }: { icon: string }) => (
-  <TextBlock>${icon}</TextBlock>
-);
-
 type HeaderProps = {
   locality?: string;
   country?: string;
@@ -102,9 +96,7 @@ export const Header = ({
                   });
                 }}
               >
-                <FontAwesomeIcon
-                  icon={theme.mode === 'Dark' ? faSun : faMoon}
-                ></FontAwesomeIcon>
+                <TextBlock>{theme.mode === 'Dark' ? '☺' : '☻'}</TextBlock>
               </Button>
             )}
           </ThemeContext.Consumer>
