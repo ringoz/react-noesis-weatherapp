@@ -1,4 +1,8 @@
-import { HorizontalAlignment, TextBlock } from '@ringozz/react-noesis';
+import {
+  HorizontalAlignment,
+  TextBlock,
+  VerticalAlignment,
+} from '@ringozz/react-noesis';
 import { ReactElement } from 'react';
 
 type LoadingProps = {
@@ -10,7 +14,10 @@ export const Loading = ({ children, isLoading }: LoadingProps) => {
   return (
     <>
       {isLoading ? (
-        <TextBlock HorizontalAlignment={HorizontalAlignment.Center}>
+        <TextBlock
+          VerticalAlignment={VerticalAlignment.Center}
+          HorizontalAlignment={HorizontalAlignment.Center}
+        >
           Loading...
         </TextBlock>
       ) : (
