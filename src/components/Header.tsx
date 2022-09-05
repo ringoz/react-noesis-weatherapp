@@ -7,10 +7,12 @@ import {
   HorizontalAlignment,
   Key,
   Orientation,
+  RowDefinition,
   StackPanel,
   TextBlock,
   TextBox,
   ThemeContext,
+  VerticalAlignment,
 } from '@ringozz/react-noesis';
 import { CurrentWeatherModel, SettingsModel } from '../models';
 
@@ -52,11 +54,14 @@ export const Header = ({
   return (
     <Grid Margin={8}>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition />
+        <ColumnDefinition Width="Auto" />
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
-      <StackPanel Grid$Column={0}>
-        <Grid MinHeight={8}></Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <StackPanel Grid$Column={0} Grid$RowSpan={2}>
         <TextBlock FontSize={40} FontWeight={FontWeight.Bold}>
           {locality}
         </TextBlock>
@@ -65,54 +70,57 @@ export const Header = ({
           {getFormatedDate()}
         </TextBlock>
       </StackPanel>
-      <StackPanel Grid$Column={1}>
-        <StackPanel
-          Orientation={Orientation.Horizontal}
-          HorizontalAlignment={HorizontalAlignment.Right}
-        >
-          <Button
-            Background={null!}
-            IsEnabled={settings.unit !== 'metric'}
-            onClick={() => {
-              changeSettings({ unit: 'metric' });
-            }}
-          >
-            °C
-          </Button>
-          <Button
-            Background={null!}
-            IsEnabled={settings.unit !== 'imperial'}
-            onClick={() => {
-              changeSettings({ unit: 'imperial' });
-            }}
-          >
-            °F
-          </Button>
-          <ThemeContext.Consumer>
-            {([theme, setTheme]) => (
-              <Button
-                Background={null!}
-                onClick={() => {
-                  setTheme({
-                    ...theme,
-                    mode: theme.mode === 'Dark' ? 'Light' : 'Dark',
-                  });
-                }}
-              >
-                <TextBlock>☻</TextBlock>
-              </Button>
-            )}
-          </ThemeContext.Consumer>
-        </StackPanel>
-        <TextBox
-          Placeholder="Enter your location"
-          onKeyDown={(e) => {
-            if (e.Key === (6 as Key)) {
-              changeLocation((e.Source as TextBox).Text);
-            }
+      <StackPanel
+        Grid$Column={1}
+        Orientation={Orientation.Horizontal}
+        HorizontalAlignment={HorizontalAlignment.Right}
+      >
+        <Button
+          Background={null!}
+          IsEnabled={settings.unit !== 'metric'}
+          onClick={() => {
+            changeSettings({ unit: 'metric' });
           }}
-        ></TextBox>
+        >
+          °C
+        </Button>
+        <Button
+          Background={null!}
+          IsEnabled={settings.unit !== 'imperial'}
+          onClick={() => {
+            changeSettings({ unit: 'imperial' });
+          }}
+        >
+          °F
+        </Button>
+        <ThemeContext.Consumer>
+          {([theme, setTheme]) => (
+            <Button
+              Background={null!}
+              onClick={() => {
+                setTheme({
+                  ...theme,
+                  mode: theme.mode === 'Dark' ? 'Light' : 'Dark',
+                });
+              }}
+            >
+              <TextBlock>☻</TextBlock>
+            </Button>
+          )}
+        </ThemeContext.Consumer>
       </StackPanel>
+      <TextBox
+        Grid$Column={1}
+        Grid$Row={1}
+        HorizontalAlignment={HorizontalAlignment.Right}
+        VerticalAlignment={VerticalAlignment.Bottom}
+        Placeholder="Enter your location"
+        onKeyDown={(e) => {
+          if (e.Key === (6 as Key)) {
+            changeLocation((e.Source as TextBox).Text);
+          }
+        }}
+      ></TextBox>
     </Grid>
   );
 };
