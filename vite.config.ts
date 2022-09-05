@@ -8,7 +8,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         entryFileNames: '[name].js',
-        assetFileNames: '[name].[ext]',
+        assetFileNames: (chunkInfo) => chunkInfo.name?.endsWith('.wasm') ? '[name].wasm' : 'assets/[name][extname]',
       },
     },
   },
