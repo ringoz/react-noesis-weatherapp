@@ -10,6 +10,7 @@ import {
   StackPanel,
   TextBlock,
   TextBox,
+  ThemeContext,
 } from '@ringozz/react-noesis';
 import { CurrentWeatherModel, SettingsModel } from '../models';
 
@@ -76,6 +77,7 @@ export const Header = ({
           HorizontalAlignment={HorizontalAlignment.Right}
         >
           <Button
+            IsEnabled={settings.unit !== 'metric'}
             onClick={() => {
               changeSettings({ unit: 'metric' });
             }}
@@ -83,22 +85,26 @@ export const Header = ({
             °C
           </Button>
           <Button
+            IsEnabled={settings.unit !== 'imperial'}
             onClick={() => {
               changeSettings({ unit: 'imperial' });
             }}
           >
             °F
           </Button>
-          <Button
-            onClick={() => {
-              if (settings.theme === 'dark') changeSettings({ theme: 'light' });
-              else changeSettings({ theme: 'dark' });
-            }}
-          >
-            <FontAwesomeIcon
-              icon={settings.theme === 'dark' ? faSun : faMoon}
-            ></FontAwesomeIcon>
-          </Button>
+          <ThemeContext.Consumer>
+            {([theme, setTheme]) => (
+              <Button
+                onClick={() => {
+                  setTheme({ ...theme, mode: (theme.mode === 'Dark') ? 'Light' : 'Dark' });
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={theme.mode === 'Dark' ? faSun : faMoon}
+                ></FontAwesomeIcon>
+              </Button>
+            )}
+          </ThemeContext.Consumer>
         </StackPanel>
         <TextBox
           Placeholder="Enter your location"
