@@ -13,10 +13,10 @@ Based on [React-WeatherApp](https://github.com/gheorghedarle/Xamarin-WeatherApp)
 Create a file called **.env** in the root of the React-WeatherApp project. Add the following code in the file.
 
 ```
-REACT_APP_OPENWEATHER_API_BASEURL = "https://api.openweathermap.org/data/2.5/onecall"
-REACT_APP_OPENWEATHER_API_KEY = "YOUR_OPENWEATHERAPI_KEY"
-REACT_APP_GEOLOCATION_GEOCODE_BASEURL = "https://maps.googleapis.com/maps/api/geocode/json"
-REACT_APP_GEOLOCATION_API_KEY = "YOUR_GOOGLEMAPSAPI_KEY"
+VITE_APP_OPENWEATHER_API_BASEURL = "https://api.openweathermap.org/data/2.5/onecall"
+VITE_APP_OPENWEATHER_API_KEY = "YOUR_OPENWEATHERAPI_KEY"
+VITE_APP_GEOLOCATION_GEOCODE_BASEURL = "https://maps.googleapis.com/maps/api/geocode/json"
+VITE_APP_GEOLOCATION_API_KEY = "YOUR_GOOGLEMAPSAPI_KEY"
 ```
 
 The app is using **One Call API** from OpenWeather API. To start the project you need an **account** and **OpenWeather API Key**. You can signup and get the key from [here](https://openweathermap.org/api).
