@@ -96,7 +96,10 @@ export const Header = ({
             {([theme, setTheme]) => (
               <Button
                 onClick={() => {
-                  setTheme({ ...theme, mode: (theme.mode === 'Dark') ? 'Light' : 'Dark' });
+                  setTheme({
+                    ...theme,
+                    mode: theme.mode === 'Dark' ? 'Light' : 'Dark',
+                  });
                 }}
               >
                 <FontAwesomeIcon
