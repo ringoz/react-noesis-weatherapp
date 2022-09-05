@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
 import { EmptyLocationModel, LocationModel } from "../models";
@@ -12,16 +11,14 @@ export const useLocation = (locationName: string, useMockData: boolean) => {
 
   const getLocationDetails = useCallback(
     (position: GeolocationPosition) => {
-      axios
-        .get(
-          useMockData
-            ? "assets/mock-data/locality.json"
-            : `${geocodeBaseUrl}?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=locality&key=${apiKey}`
-        )
-        .then((res: any) => {
-          if (res.data && res.data.results[0]) {
-            const formattedAddress =
-              res.data.results[0].formatted_address.split(",");
+      fetch(useMockData
+        ? "assets/mock-data/locality.json"
+        : `${geocodeBaseUrl}?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=locality&key=${apiKey}`
+      ).then((response) => response.json())
+        .then((data) => {
+          const result = data.results[0];
+          if (result) {
+            const formattedAddress = result.formatted_address.split(",");
             setLocation({
               position: {
                 latitude: position.coords.latitude,
@@ -41,17 +38,15 @@ export const useLocation = (locationName: string, useMockData: boolean) => {
 
   const getCoordsByLocationName = useCallback(
     (locationName: string) => {
-      axios
-        .get(
-          useMockData
-            ? "assets/mock-data/latlong.json"
-            : `${geocodeBaseUrl}?address=${locationName}&key=${apiKey}`
-        )
-        .then((res: any) => {
-          if (res.data && res.data.results[0]) {
-            const location = res.data.results[0].geometry.location;
-            const formattedAddress =
-              res.data.results[0].formatted_address.split(",");
+      fetch(useMockData
+        ? "assets/mock-data/latlong.json"
+        : `${geocodeBaseUrl}?address=${locationName}&key=${apiKey}`
+      ).then((response) => response.json())
+        .then((data) => {
+          const result = data.results[0];
+          if (result) {
+            const location = result.geometry.location;
+            const formattedAddress = result.formatted_address.split(",");
             setLocation({
               position: {
                 latitude: location.lat,

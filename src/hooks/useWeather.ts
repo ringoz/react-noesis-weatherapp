@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
 import { useLocation } from ".";
@@ -39,12 +38,11 @@ export const useWeather = (
       const url = useMockData
         ? `assets/mock-data/weather_${unit}.json`
         : `${baseUrl}?lat=${location.position.latitude}&lon=${location.position.longitude}&units=${unit}&exclude=minutely,alerts&appid=${apiKey}`;
-      axios
-        .get(url)
-        .then((response) => {
-          setCurrent(response.data.current);
-          setHourly(response.data.hourly);
-          setDaily(response.data.daily);
+      fetch(url).then((response) => response.json())
+        .then((data) => {
+          setCurrent(data.current);
+          setHourly(data.hourly);
+          setDaily(data.daily);
         })
         .catch((error) => {
           handleError(error);
