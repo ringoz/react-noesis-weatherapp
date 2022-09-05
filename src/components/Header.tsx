@@ -71,6 +71,7 @@ export const Header = ({
           HorizontalAlignment={HorizontalAlignment.Right}
         >
           <Button
+            Background={null!}
             IsEnabled={settings.unit !== 'metric'}
             onClick={() => {
               changeSettings({ unit: 'metric' });
@@ -79,6 +80,7 @@ export const Header = ({
             °C
           </Button>
           <Button
+            Background={null!}
             IsEnabled={settings.unit !== 'imperial'}
             onClick={() => {
               changeSettings({ unit: 'imperial' });
@@ -89,6 +91,7 @@ export const Header = ({
           <ThemeContext.Consumer>
             {([theme, setTheme]) => (
               <Button
+                Background={null!}
                 onClick={() => {
                   setTheme({
                     ...theme,
@@ -96,7 +99,7 @@ export const Header = ({
                   });
                 }}
               >
-                <TextBlock>{theme.mode === 'Dark' ? '☺' : '☻'}</TextBlock>
+                <TextBlock>☻</TextBlock>
               </Button>
             )}
           </ThemeContext.Consumer>
