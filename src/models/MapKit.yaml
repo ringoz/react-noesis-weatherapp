@@ -6,6 +6,21 @@ info:
 servers:
   - url: 'https://maps-api.apple.com'
 paths:
+  /v1/token:
+    get:
+      description: 'Returns a JWT maps access token that you use to call the service API.'
+      operationId: getToken
+      tags:
+        - Geocode
+      responses:
+        200:
+          description: 'A response that indicates the authorization request is successful. The dictionary that accompanies the response contains a maps access token and an integer that indicates the time in seconds until the token expires.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        401:
+          description: 'An error response that indicates the maps token is missing or invalid. The dictionary that accompanies the error may contain additional details about the error.'
   /v1/geocode:
     get:
       description: 'Returns the latitude and longitude of the address you specify.'
@@ -93,6 +108,20 @@ paths:
 
 components:
   schemas:
+    TokenResponse:
+      description: 'An object that contains an access token and an expiration time in seconds.'
+      type: object
+      required:
+        - accessToken
+        - expiresInSeconds
+      properties:
+        accessToken:
+          description: 'A string that represents the access token.'
+          type: string
+        expiresInSeconds:
+          description: 'An integer that indicates the time, in seconds from now until the token expires.'
+          type: number
+
     MapRegion:
       description: 'An object that describes a map region in terms of its upper-right and lower-left corners as a pair of geographic points.'
       type: object

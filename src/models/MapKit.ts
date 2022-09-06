@@ -4,6 +4,10 @@
  */
 
 export interface paths {
+  "/v1/token": {
+    /** Returns a JWT maps access token that you use to call the service API. */
+    get: operations["getToken"];
+  };
   "/v1/geocode": {
     /** Returns the latitude and longitude of the address you specify. */
     get: operations["getGeocode"];
@@ -16,6 +20,13 @@ export interface paths {
 
 export interface components {
   schemas: {
+    /** @description An object that contains an access token and an expiration time in seconds. */
+    TokenResponse: {
+      /** @description A string that represents the access token. */
+      accessToken: string;
+      /** @description An integer that indicates the time, in seconds from now until the token expires. */
+      expiresInSeconds: number;
+    };
     /** @description An object that describes a map region in terms of its upper-right and lower-left corners as a pair of geographic points. */
     MapRegion: {
       /** @description A double value that describes the east longitude of the map region. */
@@ -83,6 +94,19 @@ export interface components {
 }
 
 export interface operations {
+  /** Returns a JWT maps access token that you use to call the service API. */
+  getToken: {
+    responses: {
+      /** A response that indicates the authorization request is successful. The dictionary that accompanies the response contains a maps access token and an integer that indicates the time in seconds until the token expires. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TokenResponse"];
+        };
+      };
+      /** An error response that indicates the maps token is missing or invalid. The dictionary that accompanies the error may contain additional details about the error. */
+      401: unknown;
+    };
+  };
   /** Returns the latitude and longitude of the address you specify. */
   getGeocode: {
     parameters: {
