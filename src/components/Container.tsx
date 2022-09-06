@@ -41,9 +41,9 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
   };
 
   return (
-    <MockData useMockData={useMockData}>
-      <Grid Margin={8}>
-        <Loading isLoading={isLoading}>
+    <Grid Margin={8}>
+      <Loading isLoading={isLoading}>
+        <MockData useMockData={useMockData}>
           <StackPanel>
             <Header
               locality={location.locality}
@@ -67,8 +67,8 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
             ></Hourly>
             <Daily settings={settings} data={dailyWeather}></Daily>
           </StackPanel>
-        </Loading>
-      </Grid>
-    </MockData>
+        </MockData>
+      </Loading>
+    </Grid>
   );
 };
