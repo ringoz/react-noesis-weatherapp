@@ -10,7 +10,7 @@ type LoadingProps = {
   isLoading: boolean;
 };
 
-export const Loading = ({ children, isLoading }: LoadingProps) => {
+export function Loading({ children, isLoading }: LoadingProps) {
   return (
     <>
       {isLoading ? (
@@ -25,4 +25,4 @@ export const Loading = ({ children, isLoading }: LoadingProps) => {
       )}
     </>
   );
-};
+}

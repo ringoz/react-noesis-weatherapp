@@ -16,7 +16,7 @@ type DailyItemProps = {
   onClick: () => void;
 };
 
-export const DailyItem = ({ data, onClick }: DailyItemProps) => {
+export function DailyItem({ data, onClick }: DailyItemProps) {
   const weatherCode = /*data.conditionCode ||*/ '01d';
   return (
     <Button
@@ -65,4 +65,4 @@ export const DailyItem = ({ data, onClick }: DailyItemProps) => {
       </Grid>
     </Button>
   );
-};
+}

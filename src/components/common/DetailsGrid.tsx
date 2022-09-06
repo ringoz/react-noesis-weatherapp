@@ -11,7 +11,7 @@ type DetailsGridProps = {
   details: string[];
 };
 
-export const DetailsGrid = ({ details }: DetailsGridProps) => {
+export function DetailsGrid({ details }: DetailsGridProps) {
   const cols = 2;
   const rows = Math.ceil(details.length / cols);
   return (
@@ -43,4 +43,4 @@ export const DetailsGrid = ({ details }: DetailsGridProps) => {
       ))}
     </UniformGrid>
   );
-};
+}

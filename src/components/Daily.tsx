@@ -14,7 +14,7 @@ type DailyProps = {
   data: DailyWeatherModel;
 };
 
-export const Daily = ({ data }: DailyProps) => {
+export function Daily({ data }: DailyProps) {
   const [activeIndex, setActiveIndex] = useState<string>();
 
   const clickHandler = (d: DailyWeatherDetailsModel) => {
@@ -50,4 +50,4 @@ export const Daily = ({ data }: DailyProps) => {
       </StackPanel>
     </HeaderedContentControl>
   );
-};
+}

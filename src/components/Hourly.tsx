@@ -22,7 +22,7 @@ type HourlyProps = {
   clickHandler: (h: HourlyWeatherDetailsModel) => void;
 };
 
-export const Hourly = ({ data, clickHandler }: HourlyProps) => {
+export function Hourly({ data, clickHandler }: HourlyProps) {
   const [activeIndex, setActiveIndex] = useState(
     data && data.hours[0] ? data.hours[0].forecastStart : 0
   );
@@ -68,4 +68,4 @@ export const Hourly = ({ data, clickHandler }: HourlyProps) => {
       </ScrollViewer>
     </HeaderedContentControl>
   );
-};
+}

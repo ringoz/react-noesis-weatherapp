@@ -19,7 +19,7 @@ type MockDataProps = {
   useMockData: boolean;
 };
 
-export const MockData = ({ children, useMockData }: MockDataProps) => {
+export function MockData({ children, useMockData }: MockDataProps) {
   return useMockData ? (
     <StackPanel>
       <TextBlock
@@ -62,4 +62,4 @@ export const MockData = ({ children, useMockData }: MockDataProps) => {
       </TextBlock>
     </StackPanel>
   );
-};
+}

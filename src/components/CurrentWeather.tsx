@@ -14,7 +14,7 @@ type CurrentWeatherProps = {
   data: CurrentWeatherDetailsModel;
 };
 
-export const CurrentWeather = ({ data }: CurrentWeatherProps) => {
+export function CurrentWeather({ data }: CurrentWeatherProps) {
   const weatherCode = /*data.conditionCode ||*/ '01d';
   return (
     <UniformGrid Margin={8} Columns={2}>
@@ -45,4 +45,4 @@ export const CurrentWeather = ({ data }: CurrentWeatherProps) => {
       </StackPanel>
     </UniformGrid>
   );
-};
+}

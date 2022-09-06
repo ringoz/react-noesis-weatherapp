@@ -10,7 +10,7 @@ type HourlyItemProps = {
   data: HourlyWeatherDetailsModel;
 };
 
-export const HourlyItem = ({ data }: HourlyItemProps) => {
+export function HourlyItem({ data }: HourlyItemProps) {
   const weatherCode = /*data.conditionCode ||*/ '01d';
   return (
     <StackPanel>
@@ -28,4 +28,4 @@ export const HourlyItem = ({ data }: HourlyItemProps) => {
       </TextBlock>
     </StackPanel>
   );
-};
+}

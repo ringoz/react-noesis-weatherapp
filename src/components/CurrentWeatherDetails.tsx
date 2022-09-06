@@ -6,7 +6,7 @@ type CurrentWeatherProps = {
   data: CurrentWeatherDetailsModel;
 };
 
-export const CurrentWeatherDetails = ({ data }: CurrentWeatherProps) => {
+export function CurrentWeatherDetails({ data }: CurrentWeatherProps) {
   const rainChance = (data as HourlyWeatherDetailsModel).precipitationChance;
   const rainIntensity = (data as CurrentWeatherModel).precipitationIntensity ?? 0;
   return (
@@ -22,4 +22,4 @@ export const CurrentWeatherDetails = ({ data }: CurrentWeatherProps) => {
       />
     </Border>
   );
-};
+}

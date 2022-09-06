@@ -23,12 +23,7 @@ type HeaderProps = {
   changeLocation: (location: string) => void;
 };
 
-export const Header = ({
-  locality,
-  country,
-  data,
-  changeLocation,
-}: HeaderProps) => {
+export function Header({ locality, country, data, changeLocation }: HeaderProps) {
   const getFormatedDate = () => {
     const selectedDate = new Date((data as CurrentWeatherModel).asOf ?? (data as HourlyWeatherDetailsModel).forecastStart);
     var date = selectedDate.toLocaleString('en-GB', {
@@ -101,4 +96,4 @@ export const Header = ({
       ></TextBox>
     </Grid>
   );
-};
+}

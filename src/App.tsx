@@ -2,16 +2,16 @@ import {
   DynamicResource, Grid, PanningMode,
   ScrollBarVisibility,
   ScrollViewer, StackPanel
-} from '@ringozz/react-noesis';
-import { useEffect, useState } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { CurrentWeather, CurrentWeatherDetails, Daily, Header, Hourly } from './components';
-import { Error, ErrorHandler, Loading, MockData } from './components/common';
-import { useWeather } from './hooks';
-import { CurrentWeatherDetailsModel } from './models';
+} from "@ringozz/react-noesis";
+import { useEffect, useState } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import { CurrentWeather, CurrentWeatherDetails, Daily, Header, Hourly } from "./components";
+import { Error, ErrorHandler, Loading, MockData } from "./components/common";
+import { useWeather } from "./hooks";
+import { CurrentWeatherDetailsModel } from "./models";
 
-export const App = () => {
-  const useMockData: boolean = true;
+export function App() {
+  const useMockData = true;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] = useState<CurrentWeatherDetailsModel>();
   const [currentLocationName, setCurrentLocationName] = useState<string>('');
 
@@ -65,4 +65,4 @@ export const App = () => {
       </ScrollViewer>
     </ErrorBoundary>
   );
-};
+}

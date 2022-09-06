@@ -5,7 +5,7 @@ type DailyItemDetailsProps = {
   data: DailyWeatherDetailsModel;
 };
 
-export const DailyItemDetails = ({ data }: DailyItemDetailsProps) => {
+export function DailyItemDetails({ data }: DailyItemDetailsProps) {
   return (
     <DetailsGrid
       details={[
@@ -28,4 +28,4 @@ export const DailyItemDetails = ({ data }: DailyItemDetailsProps) => {
       ]}
     />
   );
-};
+}

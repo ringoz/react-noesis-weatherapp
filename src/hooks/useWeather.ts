@@ -5,10 +5,7 @@ import { useLocation } from ".";
 import { CurrentWeatherModel, DailyWeatherModel, HourlyWeatherModel } from "../models";
 import { paths } from "../models/WeatherKit";
 
-export const useWeather = (
-  locationName: string,
-  useMockData: boolean
-) => {
+export function useWeather(locationName: string, useMockData: boolean) {
   const { location } = useLocation(locationName, useMockData);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -61,4 +58,4 @@ export const useWeather = (
     hourlyWeather,
     dailyWeather,
   };
-};
+}
