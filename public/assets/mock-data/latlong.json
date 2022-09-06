@@ -1,59 +1,27 @@
 {
-    "results" : [
-       {
-          "address_components" : [
-             {
-                "long_name" : "Timișoara",
-                "short_name" : "Timișoara",
-                "types" : [ "locality", "political" ]
-             },
-             {
-                "long_name" : "Timisoara",
-                "short_name" : "Timisoara",
-                "types" : [ "administrative_area_level_2", "political" ]
-             },
-             {
-                "long_name" : "Timiș County",
-                "short_name" : "TM",
-                "types" : [ "administrative_area_level_1", "political" ]
-             },
-             {
-                "long_name" : "Romania",
-                "short_name" : "RO",
-                "types" : [ "country", "political" ]
-             }
-          ],
-          "formatted_address" : "Timișoara, Romania",
-          "geometry" : {
-             "bounds" : {
-                "northeast" : {
-                   "lat" : 45.798319,
-                   "lng" : 21.2978016
-                },
-                "southwest" : {
-                   "lat" : 45.6838101,
-                   "lng" : 21.135378
-                }
-             },
-             "location" : {
-                "lat" : 45.7488716,
-                "lng" : 21.2086793
-             },
-             "location_type" : "APPROXIMATE",
-             "viewport" : {
-                "northeast" : {
-                   "lat" : 45.798319,
-                   "lng" : 21.2978016
-                },
-                "southwest" : {
-                   "lat" : 45.6838101,
-                   "lng" : 21.135378
-                }
-             }
-          },
-          "place_id" : "ChIJp7UPy31nRUcRSWeTc2Svf1M",
-          "types" : [ "locality", "political" ]
-       }
-    ],
-    "status" : "OK"
- }
+   "results": [
+      {
+         "coordinate": {
+            "latitude": 55.7586642,
+            "longitude": 37.6192919
+         },
+         "displayMapRegion": {
+            "southLatitude": 55.1422463,
+            "westLongitude": 36.8037544,
+            "northLatitude": 56.0209193,
+            "eastLongitude": 37.9677133
+         },
+         "name": "Moscow",
+         "formattedAddressLines": [
+            "Moscow",
+            "Russia"
+         ],
+         "structuredAddress": {
+            "administrativeArea": "Moscow",
+            "locality": "Moscow"
+         },
+         "country": "Russia",
+         "countryCode": "RU"
+      }
+   ]
+}

@@ -3,8 +3,8 @@ import { useErrorHandler } from "react-error-boundary";
 import { EmptyLocationModel, LocationModel } from "../models";
 
 export function useLocation(locationName: string, useMockData: boolean) {
-  const apiKey = import.meta.env.VITE_APP_GEOLOCATION_API_KEY;
-  const geocodeBaseUrl = import.meta.env.VITE_APP_GEOLOCATION_GEOCODE_BASEURL;
+  const apiKey = import.meta.env.VITE_APP_MAPKIT_TOKEN;
+  const baseUrl = import.meta.env.VITE_APP_MAPKIT_BASEURL;
 
   const [location, setLocation] = useState<LocationModel>(EmptyLocationModel);
   const handleError = useErrorHandler();
@@ -13,19 +13,17 @@ export function useLocation(locationName: string, useMockData: boolean) {
     (position: GeolocationPosition) => {
       fetch(useMockData
         ? "assets/mock-data/locality.json"
-        : `${geocodeBaseUrl}?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=locality&key=${apiKey}`
+        : `${baseUrl}/v1/reverseGeocode?loc=${position.coords.latitude},${position.coords.longitude}&lang=${navigator.language}`, {
+        headers: { Authorization: `Bearer ${apiKey}` }
+      }
       ).then((response) => response.json())
         .then((data) => {
           const result = data.results[0];
           if (result) {
-            const formattedAddress = result.formatted_address.split(",");
             setLocation({
-              position: {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-              },
-              locality: formattedAddress[0].replace(/\s/g, ""),
-              country: formattedAddress[1].replace(/\s/g, ""),
+              position: result.coordinate,
+              locality: result.structuredAddress.locality,
+              country: result.country,
             });
           }
         })
@@ -33,27 +31,24 @@ export function useLocation(locationName: string, useMockData: boolean) {
           handleError(error);
         });
     },
-    [apiKey, geocodeBaseUrl, handleError, useMockData]
+    [apiKey, baseUrl, handleError, useMockData]
   );
 
   const getCoordsByLocationName = useCallback(
     (locationName: string) => {
       fetch(useMockData
         ? "assets/mock-data/latlong.json"
-        : `${geocodeBaseUrl}?address=${locationName}&key=${apiKey}`
+        : `${baseUrl}/v1/geocode?q=${locationName}&lang=${navigator.language}`, {
+        headers: { Authorization: `Bearer ${apiKey}` }
+      }
       ).then((response) => response.json())
         .then((data) => {
           const result = data.results[0];
           if (result) {
-            const location = result.geometry.location;
-            const formattedAddress = result.formatted_address.split(",");
             setLocation({
-              position: {
-                latitude: location.lat,
-                longitude: location.lng,
-              },
-              locality: formattedAddress[0].replace(/\s/g, ""),
-              country: formattedAddress[1].replace(/\s/g, ""),
+              position: result.coordinate,
+              locality: result.structuredAddress.locality,
+              country: result.country,
             });
           }
         })
@@ -61,7 +56,7 @@ export function useLocation(locationName: string, useMockData: boolean) {
           handleError(error);
         });
     },
-    [apiKey, geocodeBaseUrl, handleError, useMockData]
+    [apiKey, baseUrl, handleError, useMockData]
   );
 
   useEffect(() => {
