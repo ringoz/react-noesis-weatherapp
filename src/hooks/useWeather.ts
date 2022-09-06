@@ -1,12 +1,13 @@
 import { Fetcher } from "openapi-typescript-fetch";
 import { useEffect, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
-import { useLocation } from ".";
+import { useLocation } from "./useLocation";
 import { CurrentWeatherModel, DailyWeatherModel, HourlyWeatherModel } from "../models";
 import { paths } from "../models/WeatherKit";
 
 const baseUrl = import.meta.env.VITE_APP_WEATHERKIT_BASEURL;
 const authKey = import.meta.env.VITE_APP_WEATHERKIT_TOKEN;
+
 const fetcher = Fetcher.for<paths>();
 fetcher.configure(!baseUrl ? {
   baseUrl: "assets/mock-data/weather.json?"
@@ -50,11 +51,9 @@ export function useWeather(locationName: string) {
           setHourlyWeather(data.forecastHourly!);
           setDailyWeather(data.forecastDaily!);
         })
-        .catch((error) => {
-          handleError(error);
-        })
+        .catch(handleError)
         .finally(() => {
-          setTimeout(() => setIsLoading(false), 100);
+          setTimeout(() => setIsLoading(false));
         });
     }
   }, [location, handleError]);

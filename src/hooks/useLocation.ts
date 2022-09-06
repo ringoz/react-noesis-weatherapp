@@ -6,6 +6,7 @@ import { paths } from "../models/MapKit";
 
 const baseUrl = import.meta.env.VITE_APP_MAPKIT_BASEURL;
 const authKey = import.meta.env.VITE_APP_MAPKIT_TOKEN;
+
 const fetcher = Fetcher.for<paths>();
 fetcher.configure(!baseUrl ? {
   baseUrl: "assets/mock-data/geocode.json?"
@@ -37,9 +38,7 @@ export function useLocation(locationName: string) {
               .then((data) => {
                 setLocation(data.results[0]);
               })
-              .catch((error) => {
-                handleError(error);
-              });;
+              .catch(handleError);
           },
           () => {
             handleError({
@@ -57,9 +56,7 @@ export function useLocation(locationName: string) {
         .then((data) => {
           setLocation(data.results[0]);
         })
-        .catch((error) => {
-          handleError(error);
-        });;
+        .catch(handleError);
     }
   }, [locationName, handleError]);
 

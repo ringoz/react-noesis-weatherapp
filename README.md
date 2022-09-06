@@ -10,7 +10,7 @@ Based on [React-WeatherApp](https://github.com/gheorghedarle/React-WeatherApp) b
 
 ## Setup
 
-To use real data, create a file called **.env** in the root of the React-WeatherApp project. Add the following code in the file.
+To use real data, create a file called **.env.local** in the root of the React-WeatherApp project. Add the following code in the file.
 
 ```
 VITE_APP_MAPKIT_BASEURL=https://maps-api.apple.com
