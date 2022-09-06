@@ -3,8 +3,8 @@ import {
   DynamicResource,
   Grid,
   HorizontalAlignment,
-  RowDefinition,
   TextBlock,
+  UniformGrid,
 } from '@ringozz/react-noesis';
 
 type DetailsGridProps = {
@@ -15,17 +15,7 @@ export const DetailsGrid = ({ details }: DetailsGridProps) => {
   const cols = 2;
   const rows = Math.ceil(details.length / cols);
   return (
-    <Grid Margin={8}>
-      <Grid.ColumnDefinitions>
-        {Array.from({ length: cols }, (_, idx) => (
-          <ColumnDefinition key={idx} />
-        ))}
-      </Grid.ColumnDefinitions>
-      <Grid.RowDefinitions>
-        {Array.from({ length: rows }, (_, idx) => (
-          <RowDefinition key={idx} />
-        ))}
-      </Grid.RowDefinitions>
+    <UniformGrid Margin={8} Columns={cols} Rows={rows}>
       {details.map((val, idx) => (
         <Grid
           key={idx}
@@ -51,7 +41,7 @@ export const DetailsGrid = ({ details }: DetailsGridProps) => {
           </TextBlock>
         </Grid>
       ))}
-    </Grid>
+    </UniformGrid>
   );
 };
 

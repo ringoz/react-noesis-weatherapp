@@ -1,13 +1,12 @@
 import {
-  ColumnDefinition,
   DynamicResource,
   FontWeight,
-  Grid,
   HorizontalAlignment,
   Image,
   Span,
   StackPanel,
   TextBlock,
+  UniformGrid,
 } from '@ringozz/react-noesis';
 import { CurrentWeatherModel, SettingsModel } from '../models';
 
@@ -20,13 +19,13 @@ export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
   const weatherCode = data.weather.icon || '01d';
   const unitSymbol = settings.unit === 'metric' ? 'C' : 'F';
   return (
-    <Grid Margin={8}>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition />
-        <ColumnDefinition />
-      </Grid.ColumnDefinitions>
+    <UniformGrid Margin={8} Columns={2}>
       <StackPanel Grid$Column={0}>
-        <Image Width={120} Height={120} Source={`assets/icon_${weatherCode}.png`} />
+        <Image
+          Width={120}
+          Height={120}
+          Source={`assets/icon_${weatherCode}.png`}
+        />
       </StackPanel>
       <StackPanel Grid$Column={1}>
         <TextBlock
@@ -46,7 +45,7 @@ export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
           {data.weather.description}
         </TextBlock>
       </StackPanel>
-    </Grid>
+    </UniformGrid>
   );
 };
 
