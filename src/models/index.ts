@@ -3,9 +3,11 @@ export * from "./SettingsModel";
 export * from "./LocationModel";
 export * from "./LocationPositionModel";
 
-export * from "./WeatherModel";
-export * from "./CurrentWeatherModel";
-export * from "./CurrentWeatherDetailsModel";
-export * from "./HourlyWeatherModel";
-export * from "./DailyWeatherModel";
-export * from "./DailyWeatherDetailsModel";
+import { components } from "./WeatherKit";
+export type WeatherMetadataModel = components["schemas"]["Metadata"];
+export type CurrentWeatherModel = components["schemas"]["CurrentWeather"];
+export type CurrentWeatherDetailsModel = CurrentWeatherModel | HourlyWeatherDetailsModel;
+export type HourlyWeatherModel = components["schemas"]["HourlyForecast"];
+export type HourlyWeatherDetailsModel = components["schemas"]["HourWeatherConditions"];
+export type DailyWeatherModel = components["schemas"]["DailyForecast"];
+export type DailyWeatherDetailsModel = components["schemas"]["DayWeatherConditions"];

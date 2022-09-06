@@ -1,21 +1,23 @@
 import { Border, DynamicResource } from '@ringozz/react-noesis';
-import { CurrentWeatherDetailsModel } from '../models';
+import { CurrentWeatherDetailsModel, CurrentWeatherModel, HourlyWeatherDetailsModel } from '../models';
 import DetailsGrid from './common/DetailsGrid';
 
 type CurrentWeatherProps = {
-  data?: CurrentWeatherDetailsModel;
+  data: CurrentWeatherDetailsModel;
 };
 
 export const CurrentWeatherDetails = ({ data }: CurrentWeatherProps) => {
+  const rainChance = (data as HourlyWeatherDetailsModel).precipitationChance;
+  const rainIntensity = (data as CurrentWeatherModel).precipitationIntensity ?? 0;
   return (
     <Border Margin={8} Background={DynamicResource('Brush.TextBox.Focused')}>
       <DetailsGrid
         details={[
-          `Rain: ${data?.rain.toFixed(2)}%`,
-          `Pressure: ${data?.pressure}hPa`,
-          `Humidity: ${data?.humidity}%`,
-          `Visibility: ${data?.visibility} km`,
-          `Wind speed: ${data ? Math.round(data.wind_speed) : ''} m/s`,
+          (rainChance !== undefined) ? `Rain: ${Math.round(rainChance * 100)}%` : `Rain: ${rainIntensity} mm/h`,
+          `Pressure: ${data.pressure}hPa`,
+          `Humidity: ${Math.round(data.humidity * 100)}%`,
+          `Visibility: ${data.visibility} km`,
+          `Wind speed: ${Math.round(data.windSpeed)} m/s`,
         ]}
       />
     </Border>

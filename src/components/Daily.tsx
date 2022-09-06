@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import DailyItem from './DailyItem';
-import { DailyWeatherModel, SettingsModel } from '../models';
+import { DailyWeatherDetailsModel, DailyWeatherModel, SettingsModel } from '../models';
 import { DailyItemDetails } from './DailyItemDetails';
 import {
   FontWeight,
@@ -16,13 +16,13 @@ type DailyProps = {
 };
 
 export const Daily = ({ settings, data }: DailyProps) => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState<string>();
 
-  const clickHandler = (d: any) => {
-    if (d.dt === activeIndex) {
-      setActiveIndex(null);
+  const clickHandler = (d: DailyWeatherDetailsModel) => {
+    if (d.forecastStart === activeIndex) {
+      setActiveIndex(undefined);
     } else {
-      setActiveIndex(d.dt);
+      setActiveIndex(d.forecastStart);
     }
   };
   return (
@@ -33,8 +33,8 @@ export const Daily = ({ settings, data }: DailyProps) => {
         </TextBlock>
       </HeaderedContentControl.Header>
       <StackPanel Margin={4}>
-        {data.daily.map((d) => (
-          <StackPanel key={d.dt}>
+        {data.days.map((d) => (
+          <StackPanel key={d.forecastStart}>
             <DailyItem
               settings={settings}
               data={d}
@@ -42,7 +42,7 @@ export const Daily = ({ settings, data }: DailyProps) => {
             />
             <StackPanel
               Visibility={
-                activeIndex === d.dt ? Visibility.Visible : Visibility.Collapsed
+                activeIndex === d.forecastStart ? Visibility.Visible : Visibility.Collapsed
               }
             >
               <DailyItemDetails data={d} />

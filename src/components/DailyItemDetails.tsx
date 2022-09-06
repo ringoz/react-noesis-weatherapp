@@ -9,18 +9,18 @@ export const DailyItemDetails = ({ data }: DailyItemDetailsProps) => {
   return (
     <DetailsGrid
       details={[
-        `Rain: ${data.rain.toFixed(2)}%`,
-        `Pressure: ${data.pressure}hPa`,
-        `Humidity: ${data.humidity}%`,
-        `Clouds: ${data.clouds}%`,
-        `Wind speed: ${data ? Math.round(data.wind_speed) : ''} m/s`,
-        `UV Index: ${data.uvi}`,
-        `Sunrise: ${new Date(data.sunrise * 1000).toLocaleString('en-GB', {
+        `Rain: ${Math.round(data.precipitationChance * 100)}%`,
+        `Pressure: ${0}hPa`,
+        `Humidity: ${Math.round(data.daytimeForecast!.humidity * 100)}%`,
+        `Clouds: ${Math.round(data.daytimeForecast!.cloudCover * 100)}%`,
+        `Wind speed: ${data.daytimeForecast!.windSpeed} m/s`,
+        `UV Index: ${data.maxUvIndex}`,
+        `Sunrise: ${new Date(data.sunrise!).toLocaleString('en-GB', {
           hour: '2-digit',
           minute: '2-digit',
           hour12: false,
         })}`,
-        `Sunset: ${new Date(data.sunset * 1000).toLocaleString('en-GB', {
+        `Sunset: ${new Date(data.sunset!).toLocaleString('en-GB', {
           hour: '2-digit',
           minute: '2-digit',
           hour12: false,

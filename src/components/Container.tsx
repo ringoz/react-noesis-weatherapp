@@ -1,11 +1,7 @@
 import { Grid, StackPanel } from '@ringozz/react-noesis';
 import { useEffect, useState } from 'react';
 import { useWeather } from '../hooks';
-import {
-  CurrentWeatherModel,
-  EmptyCurrentWeather,
-  SettingsModel,
-} from '../models';
+import { CurrentWeatherDetailsModel, SettingsModel} from '../models';
 import { Loading } from './common/Loading';
 import MockData from './common/MockData';
 import CurrentWeather from './CurrentWeather';
@@ -21,8 +17,7 @@ type ContainerProps = {
 
 export const Container = ({ settings, changeSettings }: ContainerProps) => {
   const useMockData: boolean = true;
-  const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =
-    useState(EmptyCurrentWeather);
+  const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] = useState<CurrentWeatherDetailsModel>();
   const [currentLocationName, setCurrentLocationName] = useState<string>('');
 
   const { isLoading, location, currentWeather, hourlyWeather, dailyWeather } =
@@ -32,7 +27,7 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
     setCurrentWeatherSelectedItem(currentWeather);
   }, [currentWeather]);
 
-  const hourlyItemClickHandler = (current: CurrentWeatherModel) => {
+  const hourlyItemClickHandler = (current: CurrentWeatherDetailsModel) => {
     setCurrentWeatherSelectedItem(current);
   };
 
@@ -48,24 +43,24 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
             <Header
               locality={location.locality}
               country={location.country}
-              data={currentWeatherSelectedItem}
+              data={currentWeatherSelectedItem!}
               settings={settings}
               changeSettings={changeSettings}
               changeLocation={changeLocationHandler}
             ></Header>
             <CurrentWeather
               settings={settings}
-              data={currentWeatherSelectedItem}
+              data={currentWeatherSelectedItem!}
             ></CurrentWeather>
             <CurrentWeatherDetails
-              data={currentWeatherSelectedItem.details}
+              data={currentWeatherSelectedItem!}
             ></CurrentWeatherDetails>
             <Hourly
               settings={settings}
-              data={hourlyWeather}
+              data={hourlyWeather!}
               clickHandler={hourlyItemClickHandler}
             ></Hourly>
-            <Daily settings={settings} data={dailyWeather}></Daily>
+            <Daily settings={settings} data={dailyWeather!}></Daily>
           </StackPanel>
         </MockData>
       </Loading>

@@ -9,8 +9,7 @@ import {
   TextBlock,
   VerticalAlignment,
 } from '@ringozz/react-noesis';
-import { SettingsModel } from '../models';
-import { DailyWeatherDetailsModel } from '../models/DailyWeatherDetailsModel';
+import { DailyWeatherDetailsModel, SettingsModel } from '../models';
 
 type DailyItemProps = {
   settings: SettingsModel;
@@ -19,7 +18,7 @@ type DailyItemProps = {
 };
 
 export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
-  const weatherCode = data.weather.icon;
+  const weatherCode = /*data.conditionCode ||*/ '01d';
   const unitSymbol = settings.unit === 'metric' ? 'C' : 'F';
   return (
     <Button
@@ -47,7 +46,7 @@ export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
           VerticalAlignment={VerticalAlignment.Center}
           FontWeight={FontWeight.Bold}
         >
-          {new Date(data.dt * 1000).toLocaleString('en-GB', {
+          {new Date(data.forecastStart).toLocaleString('en-GB', {
             weekday: 'long',
           })}
         </TextBlock>
@@ -56,14 +55,14 @@ export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
           VerticalAlignment={VerticalAlignment.Center}
           HorizontalAlignment={HorizontalAlignment.Right}
         >
-          {data.weather.description}
+          {data.conditionCode}
         </TextBlock>
         <TextBlock
           Grid$Column={3}
           VerticalAlignment={VerticalAlignment.Center}
           HorizontalAlignment={HorizontalAlignment.Right}
         >
-          {Math.round(data.minTemp)}°{unitSymbol} / {Math.round(data.maxTemp)}°
+          {Math.round(data.temperatureMin)}°{unitSymbol} / {Math.round(data.temperatureMax)}°
           {unitSymbol}
         </TextBlock>
       </Grid>

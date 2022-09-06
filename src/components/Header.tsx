@@ -14,12 +14,12 @@ import {
   ThemeContext,
   VerticalAlignment,
 } from '@ringozz/react-noesis';
-import { CurrentWeatherModel, SettingsModel } from '../models';
+import { CurrentWeatherDetailsModel, CurrentWeatherModel, HourlyWeatherDetailsModel, SettingsModel } from '../models';
 
 type HeaderProps = {
   locality?: string;
   country?: string;
-  data: CurrentWeatherModel;
+  data: CurrentWeatherDetailsModel;
   settings: SettingsModel;
   changeSettings: (newSettings: object) => void;
   changeLocation: (location: string) => void;
@@ -34,7 +34,7 @@ export const Header = ({
   changeLocation,
 }: HeaderProps) => {
   const getFormatedDate = () => {
-    const selectedDate = new Date(data.dt * 1000);
+    const selectedDate = new Date((data as CurrentWeatherModel).asOf ?? (data as HourlyWeatherDetailsModel).forecastStart);
     var date = selectedDate.toLocaleString('en-GB', {
       day: 'numeric',
       weekday: 'long',

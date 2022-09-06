@@ -12,7 +12,7 @@ import {
 } from '@ringozz/react-noesis';
 import { useState } from 'react';
 import {
-  CurrentWeatherModel,
+  HourlyWeatherDetailsModel,
   HourlyWeatherModel,
   SettingsModel,
 } from '../models';
@@ -21,16 +21,16 @@ import HourlyItem from './HourlyItem';
 type HourlyProps = {
   settings: SettingsModel;
   data: HourlyWeatherModel;
-  clickHandler: (h: CurrentWeatherModel) => void;
+  clickHandler: (h: HourlyWeatherDetailsModel) => void;
 };
 
 export const Hourly = ({ settings, data, clickHandler }: HourlyProps) => {
   const [activeIndex, setActiveIndex] = useState(
-    data && data.hourly[0] ? data.hourly[0].dt : 0
+    data && data.hours[0] ? data.hours[0].forecastStart : 0
   );
 
-  const onClickHandler = (h: CurrentWeatherModel) => {
-    setActiveIndex(h.dt);
+  const onClickHandler = (h: HourlyWeatherDetailsModel) => {
+    setActiveIndex(h.forecastStart);
     clickHandler(h);
   };
 
@@ -47,18 +47,18 @@ export const Hourly = ({ settings, data, clickHandler }: HourlyProps) => {
         HorizontalScrollBarVisibility={ScrollBarVisibility.Hidden}
       >
         <StackPanel Orientation={Orientation.Horizontal}>
-          {data.hourly.map((h) => (
+          {data.hours.map((h) => (
             <Button
-              key={h.dt}
-              IsEnabled={activeIndex !== h.dt}
+              key={h.forecastStart}
+              IsEnabled={activeIndex !== h.forecastStart}
               Background={DynamicResource(
-                activeIndex === h.dt
+                activeIndex === h.forecastStart
                   ? 'Brush.TextBox.Focused'
                   : 'Brush.Track.Normal'
               )}
               TextBlock$Foreground={DynamicResource('Brush.Foreground.Normal')}
               TextBlock$FontWeight={
-                activeIndex === h.dt ? FontWeight.Bold : FontWeight.Normal
+                activeIndex === h.forecastStart ? FontWeight.Bold : FontWeight.Normal
               }
               onClick={() => onClickHandler(h)}
               Margin={4}
