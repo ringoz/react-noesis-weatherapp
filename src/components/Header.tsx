@@ -12,7 +12,7 @@ import {
   TextBlock,
   TextBox,
   ThemeContext,
-  VerticalAlignment,
+  VerticalAlignment
 } from '@ringozz/react-noesis';
 import { CurrentWeatherDetailsModel, CurrentWeatherModel, HourlyWeatherDetailsModel } from '../models';
 
@@ -102,5 +102,3 @@ export const Header = ({
     </Grid>
   );
 };
-
-export default Header;

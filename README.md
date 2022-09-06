@@ -17,4 +17,4 @@ VITE_APP_WEATHERKIT_BASEURL = "https://weatherkit.apple.com"
 VITE_APP_WEATHERKIT_TOKEN = "YOUR_WEATHERKIT_TOKEN"
 ```
 
-To use real data, change the flag **useMockData** to false from **Container.tsx**.
+To use real data, change the flag **useMockData** to false from **App.tsx**.

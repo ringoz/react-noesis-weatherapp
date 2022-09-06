@@ -10,7 +10,7 @@ import {
   TextBlock,
   TextWrapping,
   VerticalAlignment,
-  Viewbox,
+  Viewbox
 } from '@ringozz/react-noesis';
 import { ReactElement } from 'react';
 
@@ -63,5 +63,3 @@ export const MockData = ({ children, useMockData }: MockDataProps) => {
     </StackPanel>
   );
 };
-
-export default MockData;

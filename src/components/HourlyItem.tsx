@@ -2,7 +2,7 @@ import {
   HorizontalAlignment,
   Image,
   StackPanel,
-  TextBlock,
+  TextBlock
 } from '@ringozz/react-noesis';
 import { HourlyWeatherDetailsModel } from '../models';
 
@@ -29,4 +29,3 @@ export const HourlyItem = ({ data }: HourlyItemProps) => {
     </StackPanel>
   );
 };
-export default HourlyItem;

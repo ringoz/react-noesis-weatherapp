@@ -1,8 +1,8 @@
+import { Fetcher } from "openapi-typescript-fetch";
 import { useEffect, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
 import { useLocation } from ".";
-import { CurrentWeatherModel, HourlyWeatherModel, DailyWeatherModel } from "../models";
-import { Fetcher } from "openapi-typescript-fetch";
+import { CurrentWeatherModel, DailyWeatherModel, HourlyWeatherModel } from "../models";
 import { paths } from "../models/WeatherKit";
 
 export const useWeather = (

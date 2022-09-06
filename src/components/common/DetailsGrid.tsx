@@ -4,7 +4,7 @@ import {
   Grid,
   HorizontalAlignment,
   TextBlock,
-  UniformGrid,
+  UniformGrid
 } from '@ringozz/react-noesis';
 
 type DetailsGridProps = {
@@ -44,5 +44,3 @@ export const DetailsGrid = ({ details }: DetailsGridProps) => {
     </UniformGrid>
   );
 };
-
-export default DetailsGrid;

@@ -6,7 +6,7 @@ import {
   Span,
   StackPanel,
   TextBlock,
-  UniformGrid,
+  UniformGrid
 } from '@ringozz/react-noesis';
 import { CurrentWeatherDetailsModel } from '../models';
 
@@ -46,5 +46,3 @@ export const CurrentWeather = ({ data }: CurrentWeatherProps) => {
     </UniformGrid>
   );
 };
-
-export default CurrentWeather;

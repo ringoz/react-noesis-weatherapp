@@ -8,14 +8,14 @@ import {
   ScrollBarVisibility,
   ScrollViewer,
   StackPanel,
-  TextBlock,
+  TextBlock
 } from '@ringozz/react-noesis';
 import { useState } from 'react';
 import {
   HourlyWeatherDetailsModel,
-  HourlyWeatherModel,
+  HourlyWeatherModel
 } from '../models';
-import HourlyItem from './HourlyItem';
+import { HourlyItem } from './HourlyItem';
 
 type HourlyProps = {
   data: HourlyWeatherModel;
@@ -69,5 +69,3 @@ export const Hourly = ({ data, clickHandler }: HourlyProps) => {
     </HeaderedContentControl>
   );
 };
-
-export default Hourly;

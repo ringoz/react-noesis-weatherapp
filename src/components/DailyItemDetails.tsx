@@ -1,5 +1,5 @@
 import { DailyWeatherDetailsModel } from '../models';
-import DetailsGrid from './common/DetailsGrid';
+import { DetailsGrid } from './common';
 
 type DailyItemDetailsProps = {
   data: DailyWeatherDetailsModel;
@@ -29,5 +29,3 @@ export const DailyItemDetails = ({ data }: DailyItemDetailsProps) => {
     />
   );
 };
-
-export default DailyItemDetails;

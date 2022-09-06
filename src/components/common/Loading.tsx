@@ -1,7 +1,7 @@
 import {
   HorizontalAlignment,
   TextBlock,
-  VerticalAlignment,
+  VerticalAlignment
 } from '@ringozz/react-noesis';
 import { ReactElement } from 'react';
 
@@ -26,5 +26,3 @@ export const Loading = ({ children, isLoading }: LoadingProps) => {
     </>
   );
 };
-
-export default Loading;

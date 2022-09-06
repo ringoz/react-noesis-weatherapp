@@ -1,6 +1,6 @@
 import { Border, DynamicResource } from '@ringozz/react-noesis';
 import { CurrentWeatherDetailsModel, CurrentWeatherModel, HourlyWeatherDetailsModel } from '../models';
-import DetailsGrid from './common/DetailsGrid';
+import { DetailsGrid } from './common';
 
 type CurrentWeatherProps = {
   data: CurrentWeatherDetailsModel;
@@ -23,5 +23,3 @@ export const CurrentWeatherDetails = ({ data }: CurrentWeatherProps) => {
     </Border>
   );
 };
-
-export default CurrentWeatherDetails;

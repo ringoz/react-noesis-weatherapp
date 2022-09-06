@@ -7,7 +7,7 @@ import {
   HorizontalAlignment,
   Image,
   TextBlock,
-  VerticalAlignment,
+  VerticalAlignment
 } from '@ringozz/react-noesis';
 import { DailyWeatherDetailsModel } from '../models';
 
@@ -66,5 +66,3 @@ export const DailyItem = ({ data, onClick }: DailyItemProps) => {
     </Button>
   );
 };
-
-export default DailyItem;

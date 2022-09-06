@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import DailyItem from './DailyItem';
-import { DailyWeatherDetailsModel, DailyWeatherModel } from '../models';
-import { DailyItemDetails } from './DailyItemDetails';
 import {
   FontWeight,
   HeaderedContentControl,
   StackPanel,
   TextBlock,
-  Visibility,
+  Visibility
 } from '@ringozz/react-noesis';
+import { useState } from 'react';
+import { DailyWeatherDetailsModel, DailyWeatherModel } from '../models';
+import { DailyItem } from './DailyItem';
+import { DailyItemDetails } from './DailyItemDetails';
 
 type DailyProps = {
   data: DailyWeatherModel;
@@ -51,5 +51,3 @@ export const Daily = ({ data }: DailyProps) => {
     </HeaderedContentControl>
   );
 };
-
-export default Daily;
