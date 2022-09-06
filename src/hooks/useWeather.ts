@@ -29,13 +29,20 @@ export function useWeather(locationName: string, useMockData: boolean) {
         }
       });
 
+      const oneDay = 24 * 60 * 60 * 1000;
+      const tomorrow = Date.now() + oneDay;
+
       const fetchWeather = fetcher.path("/api/v1/weather/{language}/{latitude}/{longitude}").method('get').create();
       fetchWeather({
         dataSets: ["currentWeather", "forecastHourly", "forecastDaily"],
         language: navigator.language,
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         latitude: location.position.latitude,
-        longitude: location.position.longitude
+        longitude: location.position.longitude,
+        dailyStart: new Date(tomorrow).toISOString(),
+        dailyEnd: new Date(tomorrow + 7 * oneDay).toISOString(),
+        hourlyStart: new Date().toISOString(),
+        hourlyEnd: new Date(tomorrow).toISOString()
       }).then((response) => response.data)
         .then((data) => {
           setCurrentWeather(data.currentWeather!);
