@@ -1,5 +1,3 @@
-export * from "./SettingsModel";
-
 export * from "./LocationModel";
 export * from "./LocationPositionModel";
 

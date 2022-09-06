@@ -1,7 +1,6 @@
 import { Container } from './components/Container';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Error, ErrorHandler } from './components/common/Error';
-import { useSettings } from './hooks';
 import {
   DynamicResource,
   PanningMode,
@@ -10,8 +9,6 @@ import {
 } from '@ringozz/react-noesis';
 
 export const App = () => {
-  const { settings, changeSettings } = useSettings();
-
   return (
     <ErrorBoundary FallbackComponent={Error} onError={ErrorHandler}>
       <ScrollViewer
@@ -19,10 +16,7 @@ export const App = () => {
         PanningMode={PanningMode.VerticalOnly}
         VerticalScrollBarVisibility={ScrollBarVisibility.Hidden}
       >
-        <Container
-          settings={settings}
-          changeSettings={changeSettings}
-        ></Container>
+        <Container />
       </ScrollViewer>
     </ErrorBoundary>
   );

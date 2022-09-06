@@ -9,17 +9,15 @@ import {
   TextBlock,
   VerticalAlignment,
 } from '@ringozz/react-noesis';
-import { DailyWeatherDetailsModel, SettingsModel } from '../models';
+import { DailyWeatherDetailsModel } from '../models';
 
 type DailyItemProps = {
-  settings: SettingsModel;
   data: DailyWeatherDetailsModel;
   onClick: () => void;
 };
 
-export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
+export const DailyItem = ({ data, onClick }: DailyItemProps) => {
   const weatherCode = /*data.conditionCode ||*/ '01d';
-  const unitSymbol = settings.unit === 'metric' ? 'C' : 'F';
   return (
     <Button
       Margin={4}
@@ -62,8 +60,7 @@ export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
           VerticalAlignment={VerticalAlignment.Center}
           HorizontalAlignment={HorizontalAlignment.Right}
         >
-          {Math.round(data.temperatureMin)}°{unitSymbol} / {Math.round(data.temperatureMax)}°
-          {unitSymbol}
+          {Math.round(data.temperatureMin)}° / {Math.round(data.temperatureMax)}°
         </TextBlock>
       </Grid>
     </Button>

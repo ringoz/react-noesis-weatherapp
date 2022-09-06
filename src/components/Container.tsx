@@ -1,7 +1,7 @@
 import { Grid, StackPanel } from '@ringozz/react-noesis';
 import { useEffect, useState } from 'react';
 import { useWeather } from '../hooks';
-import { CurrentWeatherDetailsModel, SettingsModel} from '../models';
+import { CurrentWeatherDetailsModel } from '../models';
 import { Loading } from './common/Loading';
 import MockData from './common/MockData';
 import CurrentWeather from './CurrentWeather';
@@ -11,17 +11,15 @@ import Header from './Header';
 import Hourly from './Hourly';
 
 type ContainerProps = {
-  settings: SettingsModel;
-  changeSettings: (newSettings: object) => void;
 };
 
-export const Container = ({ settings, changeSettings }: ContainerProps) => {
+export const Container = ({}: ContainerProps) => {
   const useMockData: boolean = true;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] = useState<CurrentWeatherDetailsModel>();
   const [currentLocationName, setCurrentLocationName] = useState<string>('');
 
   const { isLoading, location, currentWeather, hourlyWeather, dailyWeather } =
-    useWeather(currentLocationName, settings.unit, useMockData);
+    useWeather(currentLocationName, useMockData);
 
   useEffect(() => {
     setCurrentWeatherSelectedItem(currentWeather);
@@ -44,23 +42,19 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
               locality={location.locality}
               country={location.country}
               data={currentWeatherSelectedItem!}
-              settings={settings}
-              changeSettings={changeSettings}
               changeLocation={changeLocationHandler}
             ></Header>
             <CurrentWeather
-              settings={settings}
               data={currentWeatherSelectedItem!}
             ></CurrentWeather>
             <CurrentWeatherDetails
               data={currentWeatherSelectedItem!}
             ></CurrentWeatherDetails>
             <Hourly
-              settings={settings}
               data={hourlyWeather!}
               clickHandler={hourlyItemClickHandler}
             ></Hourly>
-            <Daily settings={settings} data={dailyWeather!}></Daily>
+            <Daily data={dailyWeather!}></Daily>
           </StackPanel>
         </MockData>
       </Loading>

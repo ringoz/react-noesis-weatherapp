@@ -8,16 +8,14 @@ import {
   TextBlock,
   UniformGrid,
 } from '@ringozz/react-noesis';
-import { CurrentWeatherDetailsModel, SettingsModel } from '../models';
+import { CurrentWeatherDetailsModel } from '../models';
 
 type CurrentWeatherProps = {
-  settings: SettingsModel;
   data: CurrentWeatherDetailsModel;
 };
 
-export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
+export const CurrentWeather = ({ data }: CurrentWeatherProps) => {
   const weatherCode = /*data.conditionCode ||*/ '01d';
-  const unitSymbol = settings.unit === 'metric' ? 'C' : 'F';
   return (
     <UniformGrid Margin={8} Columns={2}>
       <StackPanel Grid$Column={0}>
@@ -33,7 +31,7 @@ export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
           FontSize={64}
           FontWeight={FontWeight.Bold}
         >
-          {Math.round(data.temperature)}°<Span>{unitSymbol}</Span>
+          {Math.round(data.temperature)}°
         </TextBlock>
         <TextBlock HorizontalAlignment={HorizontalAlignment.Center}>
           <Span Foreground={DynamicResource('Brush.Foreground.Placeholder')}>

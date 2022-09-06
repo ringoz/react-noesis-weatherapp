@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import DailyItem from './DailyItem';
-import { DailyWeatherDetailsModel, DailyWeatherModel, SettingsModel } from '../models';
+import { DailyWeatherDetailsModel, DailyWeatherModel } from '../models';
 import { DailyItemDetails } from './DailyItemDetails';
 import {
   FontWeight,
@@ -11,11 +11,10 @@ import {
 } from '@ringozz/react-noesis';
 
 type DailyProps = {
-  settings: SettingsModel;
   data: DailyWeatherModel;
 };
 
-export const Daily = ({ settings, data }: DailyProps) => {
+export const Daily = ({ data }: DailyProps) => {
   const [activeIndex, setActiveIndex] = useState<string>();
 
   const clickHandler = (d: DailyWeatherDetailsModel) => {
@@ -36,7 +35,6 @@ export const Daily = ({ settings, data }: DailyProps) => {
         {data.days.map((d) => (
           <StackPanel key={d.forecastStart}>
             <DailyItem
-              settings={settings}
               data={d}
               onClick={() => clickHandler(d)}
             />

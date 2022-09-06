@@ -7,7 +7,6 @@ import { paths } from "../models/WeatherKit";
 
 export const useWeather = (
   locationName: string,
-  unit: string,
   useMockData: boolean
 ) => {
   const { location } = useLocation(locationName, useMockData);
@@ -53,7 +52,7 @@ export const useWeather = (
           setTimeout(() => setIsLoading(false), 100);
         });
     }
-  }, [location, unit, useMockData, handleError]);
+  }, [location, useMockData, handleError]);
 
   return {
     isLoading,

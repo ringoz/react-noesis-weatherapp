@@ -14,17 +14,15 @@ import { useState } from 'react';
 import {
   HourlyWeatherDetailsModel,
   HourlyWeatherModel,
-  SettingsModel,
 } from '../models';
 import HourlyItem from './HourlyItem';
 
 type HourlyProps = {
-  settings: SettingsModel;
   data: HourlyWeatherModel;
   clickHandler: (h: HourlyWeatherDetailsModel) => void;
 };
 
-export const Hourly = ({ settings, data, clickHandler }: HourlyProps) => {
+export const Hourly = ({ data, clickHandler }: HourlyProps) => {
   const [activeIndex, setActiveIndex] = useState(
     data && data.hours[0] ? data.hours[0].forecastStart : 0
   );
@@ -63,7 +61,7 @@ export const Hourly = ({ settings, data, clickHandler }: HourlyProps) => {
               onClick={() => onClickHandler(h)}
               Margin={4}
             >
-              <HourlyItem settings={settings} data={h}></HourlyItem>
+              <HourlyItem data={h}></HourlyItem>
             </Button>
           ))}
         </StackPanel>

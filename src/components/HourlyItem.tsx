@@ -4,16 +4,14 @@ import {
   StackPanel,
   TextBlock,
 } from '@ringozz/react-noesis';
-import { HourlyWeatherDetailsModel, SettingsModel } from '../models';
+import { HourlyWeatherDetailsModel } from '../models';
 
 type HourlyItemProps = {
-  settings: SettingsModel;
   data: HourlyWeatherDetailsModel;
 };
 
-export const HourlyItem = ({ settings, data }: HourlyItemProps) => {
+export const HourlyItem = ({ data }: HourlyItemProps) => {
   const weatherCode = /*data.conditionCode ||*/ '01d';
-  const unitSymbol = settings.unit === 'metric' ? 'C' : 'F';
   return (
     <StackPanel>
       <TextBlock HorizontalAlignment={HorizontalAlignment.Center}>
@@ -26,7 +24,7 @@ export const HourlyItem = ({ settings, data }: HourlyItemProps) => {
         Source={`assets/icon_${weatherCode}.png`}
       />
       <TextBlock HorizontalAlignment={HorizontalAlignment.Center}>
-        {Math.round(data.temperature)}°{unitSymbol}
+        {Math.round(data.temperature)}°
       </TextBlock>
     </StackPanel>
   );

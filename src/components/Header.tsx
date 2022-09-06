@@ -14,14 +14,12 @@ import {
   ThemeContext,
   VerticalAlignment,
 } from '@ringozz/react-noesis';
-import { CurrentWeatherDetailsModel, CurrentWeatherModel, HourlyWeatherDetailsModel, SettingsModel } from '../models';
+import { CurrentWeatherDetailsModel, CurrentWeatherModel, HourlyWeatherDetailsModel } from '../models';
 
 type HeaderProps = {
   locality?: string;
   country?: string;
   data: CurrentWeatherDetailsModel;
-  settings: SettingsModel;
-  changeSettings: (newSettings: object) => void;
   changeLocation: (location: string) => void;
 };
 
@@ -29,8 +27,6 @@ export const Header = ({
   locality,
   country,
   data,
-  settings,
-  changeSettings,
   changeLocation,
 }: HeaderProps) => {
   const getFormatedDate = () => {
@@ -75,24 +71,6 @@ export const Header = ({
         Orientation={Orientation.Horizontal}
         HorizontalAlignment={HorizontalAlignment.Right}
       >
-        <Button
-          Background={null!}
-          IsEnabled={settings.unit !== 'metric'}
-          onClick={() => {
-            changeSettings({ unit: 'metric' });
-          }}
-        >
-          °C
-        </Button>
-        <Button
-          Background={null!}
-          IsEnabled={settings.unit !== 'imperial'}
-          onClick={() => {
-            changeSettings({ unit: 'imperial' });
-          }}
-        >
-          °F
-        </Button>
         <ThemeContext.Consumer>
           {([theme, setTheme]) => (
             <Button
