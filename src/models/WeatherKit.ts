@@ -81,7 +81,7 @@ export interface components {
       /** @description The percentage of the sky covered with clouds during the period, from 0 to 1. */
       cloudCover?: number;
       /** @description An enumeration value indicating the condition at the time. */
-      conditionCode: string;
+      conditionCode: components["schemas"]["ConditionCode"];
       /** @description A Boolean value indicating whether there is daylight. */
       daylight?: boolean;
       /** @description The relative humidity, from 0 to 1. */
@@ -433,6 +433,51 @@ export interface components {
       | "forecastHourly"
       | "forecastNextHour"
       | "weatherAlerts";
+    /**
+     * @description The condition at the time.
+     * @enum {string}
+     */
+    ConditionCode:
+      | "Clear"
+      | "Cloudy"
+      | "Dust"
+      | "Fog"
+      | "Haze"
+      | "MostlyClear"
+      | "MostlyCloudy"
+      | "PartlyCloudy"
+      | "ScatteredThunderstorms"
+      | "Smoke"
+      | "Breezy"
+      | "Windy"
+      | "Drizzle"
+      | "HeavyRain"
+      | "Rain"
+      | "Showers"
+      | "Flurries"
+      | "HeavySnow"
+      | "MixedRainAndSleet"
+      | "MixedRainAndSnow"
+      | "MixedRainfall"
+      | "MixedSnowAndSleet"
+      | "ScatteredShowers"
+      | "ScatteredSnowShowers"
+      | "Sleet"
+      | "Snow"
+      | "SnowShowers"
+      | "Blizzard"
+      | "BlowingSnow"
+      | "FreezingDrizzle"
+      | "FreezingRain"
+      | "Frigid"
+      | "Hail"
+      | "Hot"
+      | "Hurricane"
+      | "IsolatedThunderstorms"
+      | "SevereThunderstorm"
+      | "Thunderstorm"
+      | "Tornado"
+      | "TropicalStorm";
     /**
      * @description The direction of change of the sea level air pressure.
      * @enum {string}
