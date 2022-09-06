@@ -1,0 +1,221 @@
+openapi: 3.0.3
+info:
+  title: Apple Maps Server API
+  description: Reduce API calls and conserve device power by streamlining your app’s georelated searches.
+  version: 1.0.0
+servers:
+  - url: 'https://maps-api.apple.com'
+paths:
+  /v1/geocode:
+    get:
+      description: 'Returns the latitude and longitude of the address you specify.'
+      operationId: getGeocode
+      tags:
+        - Geocode
+      parameters:
+        - name: q
+          description: 'The address to geocode. For example: q=1 Apple Park, Cupertino, CA'
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: limitToCountries
+          description: 'A comma-separated list of countries (using country codes) to limit the results to. For example: limitToCountries=US,CA.'
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: lang
+          description: 'The language the server should use when returning the response, specified using a BCP 47 language code. For example, for English use lang=en-US. Default: en-US'
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: searchLocation
+          description: 'A location defined by the application as a hint. Specify the location as a comma-separated string containing the latitude and longitude. For example, searchLocation=37.78,-122.42.'
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: searchRegion
+          description: 'A region the app defines as a hint. Specify the region specified as a comma-separated string that describes the region in the form north-latitude,east-longitude,south-latitude,west-longitude. For example, searchRegion=38,-122.1,37.5,-122.5.'
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: userLocation
+          description: 'The location of the user, specified as a comma-separated string that contains the latitude and longitude. For example: userLocation=37.78,-122.42.'
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'The request is successful. The data sets are in the response.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceResults'
+        400:
+          description: 'The server is unable to process the request due to an invalid parameter value.'
+        401:
+          description: 'The request isn’t authorized or doesn’t include the correct authentication information.'
+  /v1/reverseGeocode:
+    get:
+      description: 'Returns an array of addresses present at the coordinates you provide.'
+      operationId: getReverseGeocode
+      tags:
+        - Geocode
+      parameters:
+        - name: loc
+          description: 'The coordinate to reverse geocode as a comma-separated string that contains the latitude and longitude. For example: loc=37.3316851,-122.0300674.'
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: lang
+          description: 'The language the server should use when returning the response, specified using a BCP 47 language code. For example, for English use lang=en-US. Default: en-US'
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'The request is successful. The data sets are in the response.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceResults'
+        400:
+          description: 'The server is unable to process the request due to an invalid parameter value.'
+        401:
+          description: 'The request isn’t authorized or doesn’t include the correct authentication information.'
+
+components:
+  schemas:
+    MapRegion:
+      description: 'An object that describes a map region in terms of its upper-right and lower-left corners as a pair of geographic points.'
+      type: object
+      required:
+        - eastLongitude
+        - northLatitude
+        - southLatitude
+        - westLongitude
+      properties:
+        eastLongitude:
+          description: 'A double value that describes the east longitude of the map region.'
+          type: number
+        northLatitude:
+          description: 'A double value that describes the north latitude of the map region.'
+          type: number
+        southLatitude:
+          description: 'A double value that describes the south latitude of the map region.'
+          type: number
+        westLongitude:
+          description: 'A double value that describes west longitude of the map region.'
+          type: number
+
+    Location:
+      description: 'An object that describes a location in terms of its longitude and latitude.'
+      type: object
+      required:
+        - latitude
+        - longitude
+      properties:
+        latitude:
+          description: 'A double value that describes the latitude of the coordinate.'
+          type: number
+        longitude:
+          description: 'A double value that describes the longitude of the coordinate.'
+          type: number
+
+    StructuredAddress:
+      description: 'An object that describes the detailed address components of a place.'
+      type: object
+      required:
+        - administrativeArea
+        - locality
+      properties:
+        administrativeArea:
+          description: 'The state or province of the place.'
+          type: string
+        administrativeAreaCode:
+          description: 'The short code for the state or area.'
+          type: string
+        areasOfInterest:
+          description: 'Common names of the area in which the place resides.'
+          type: array
+          items:
+            type: string
+        dependentLocalities:
+          description: 'Common names for the local area or neighborhood of the place.'
+          type: array
+          items:
+            type: string
+        fullThoroughfare:
+          description: 'A combination of thoroughfare and subthoroughfare.'
+          type: string
+        locality:
+          description: 'The city of the place.'
+          type: string
+        postCode:
+          description: 'The postal code of the place.'
+          type: string
+        subLocality:
+          description: 'The name of the area within the locality.'
+          type: string
+        subThoroughfare:
+          description: 'The number on the street at the place.'
+          type: string
+        thoroughfare:
+          description: 'The street name at the place.'
+          type: string
+
+    Place:
+      description: 'An object that describes a place in terms of a variety of spatial, administrative, and qualitative properties.'
+      type: object
+      required:
+        - country
+        - countryCode
+        - displayMapRegion
+        - formattedAddressLines
+        - name
+        - coordinate
+        - structuredAddress
+      properties:
+        country:
+          description: 'The country or region of the place.'
+          type: string
+        countryCode:
+          description: 'The 2-letter country code of the place.'
+          type: string
+          maxLength: 2
+        displayMapRegion:
+          description: 'The geographic region associated with the place.'
+          $ref: '#/components/schemas/MapRegion'
+        formattedAddressLines:
+          description: 'The address of the place, formatted using its conventions of its country or region.'
+          type: array
+          items:
+            type: string
+        name:
+          description: 'A place name that you can use for display purposes.'
+          type: string
+        coordinate:
+          description: 'The latitude and longitude of this place.'
+          $ref: '#/components/schemas/Location'
+        structuredAddress:
+          description: 'A StructuredAddress object that describes details of the place’s address.'
+          $ref: '#/components/schemas/StructuredAddress'
+
+    PlaceResults:
+      description: 'An object that contains an array of places.'
+      type: object
+      required:
+        - results
+      properties:
+        results:
+          description: 'An array of one or more Place objects.'
+          type: array
+          items:
+            $ref: '#/components/schemas/Place'

@@ -1,11 +1,12 @@
-export * from "./LocationModel";
-export * from "./LocationPositionModel";
+import { components as MapKit } from "./MapKit";
+export type LocationModel = MapKit["schemas"]["Place"];
+export type LocationPositionModel = MapKit["schemas"]["Location"];
 
-import { components } from "./WeatherKit";
-export type WeatherMetadataModel = components["schemas"]["Metadata"];
-export type CurrentWeatherModel = components["schemas"]["CurrentWeather"];
+import { components as WeatherKit } from "./WeatherKit";
+export type WeatherMetadataModel = WeatherKit["schemas"]["Metadata"];
+export type CurrentWeatherModel = WeatherKit["schemas"]["CurrentWeather"];
 export type CurrentWeatherDetailsModel = CurrentWeatherModel | HourlyWeatherDetailsModel;
-export type HourlyWeatherModel = components["schemas"]["HourlyForecast"];
-export type HourlyWeatherDetailsModel = components["schemas"]["HourWeatherConditions"];
-export type DailyWeatherModel = components["schemas"]["DailyForecast"];
-export type DailyWeatherDetailsModel = components["schemas"]["DayWeatherConditions"];
+export type HourlyWeatherModel = WeatherKit["schemas"]["HourlyForecast"];
+export type HourlyWeatherDetailsModel = WeatherKit["schemas"]["HourWeatherConditions"];
+export type DailyWeatherModel = WeatherKit["schemas"]["DailyForecast"];
+export type DailyWeatherDetailsModel = WeatherKit["schemas"]["DayWeatherConditions"];

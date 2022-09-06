@@ -6,7 +6,7 @@
   "scripts": {
     "start": "vite --port=8001 --strictPort",
     "build": "vite build",
-    "codegen": "openapi-typescript https://raw.githubusercontent.com/vanshg/WeatherKit-OpenAPI/master/weatherkit.oas3.yaml --output ./src/models/WeatherKit.ts"
+    "codegen": "openapi-typescript ./src/models/MapKit.yaml --output ./src/models/MapKit.ts && openapi-typescript ./src/models/WeatherKit.yaml --output ./src/models/WeatherKit.ts"
   },
   "dependencies": {
     "@ringozz/react-noesis": "*",

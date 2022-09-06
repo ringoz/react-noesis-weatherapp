@@ -42,8 +42,8 @@ export function App() {
             <MockData useMockData={useMockData}>
               <StackPanel>
                 <Header
-                  locality={location.locality}
-                  country={location.country}
+                  locality={location?.structuredAddress.locality}
+                  country={location?.country}
                   data={currentWeatherSelectedItem!}
                   changeLocation={changeLocationHandler}
                 ></Header>
