@@ -16,11 +16,11 @@ import { ReactElement } from 'react';
 
 type MockDataProps = {
   children: ReactElement;
-  useMockData: boolean;
+  isMockData: boolean;
 };
 
-export function MockData({ children, useMockData }: MockDataProps) {
-  return useMockData ? (
+export function MockData({ children, isMockData }: MockDataProps) {
+  return isMockData ? (
     <StackPanel>
       <TextBlock
         TextWrapping={TextWrapping.Wrap}

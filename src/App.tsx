@@ -11,12 +11,9 @@ import { useWeather } from "./hooks";
 import { CurrentWeatherDetailsModel } from "./models";
 
 export function App() {
-  const useMockData = !import.meta.env.VITE_APP_MAPKIT_BASEURL || !import.meta.env.VITE_APP_WEATHERKIT_BASEURL;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] = useState<CurrentWeatherDetailsModel>();
   const [currentLocationName, setCurrentLocationName] = useState<string>('');
-
-  const { isLoading, location, currentWeather, hourlyWeather, dailyWeather } =
-    useWeather(currentLocationName, useMockData);
+  const { isLoading, location, currentWeather, hourlyWeather, dailyWeather, isMockData } = useWeather(currentLocationName);
 
   useEffect(() => {
     setCurrentWeatherSelectedItem(currentWeather);
@@ -39,7 +36,7 @@ export function App() {
       >
         <Grid Margin={8}>
           <Loading isLoading={isLoading}>
-            <MockData useMockData={useMockData}>
+            <MockData isMockData={isMockData}>
               <StackPanel>
                 <Header
                   locality={location?.structuredAddress.locality}

@@ -10,11 +10,11 @@ Based on [React-WeatherApp](https://github.com/gheorghedarle/React-WeatherApp) b
 
 ## Setup
 
-Create a file called **.env** in the root of the React-WeatherApp project. Add the following code in the file.
+To use real data, create a file called **.env** in the root of the React-WeatherApp project. Add the following code in the file.
 
 ```
-VITE_APP_WEATHERKIT_BASEURL = "https://weatherkit.apple.com"
-VITE_APP_WEATHERKIT_TOKEN = "YOUR_WEATHERKIT_TOKEN"
+VITE_APP_MAPKIT_BASEURL=https://maps-api.apple.com
+VITE_APP_MAPKIT_TOKEN=YOUR_MAPKIT_TOKEN
+VITE_APP_WEATHERKIT_BASEURL=https://weatherkit.apple.com
+VITE_APP_WEATHERKIT_TOKEN=YOUR_WEATHERKIT_TOKEN
 ```
-
-To use real data, change the flag **useMockData** to false from **App.tsx**.

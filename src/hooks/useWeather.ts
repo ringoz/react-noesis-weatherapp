@@ -5,9 +5,24 @@ import { useLocation } from ".";
 import { CurrentWeatherModel, DailyWeatherModel, HourlyWeatherModel } from "../models";
 import { paths } from "../models/WeatherKit";
 
-export function useWeather(locationName: string, useMockData: boolean) {
-  const { location } = useLocation(locationName, useMockData);
+const baseUrl = import.meta.env.VITE_APP_WEATHERKIT_BASEURL;
+const authKey = import.meta.env.VITE_APP_WEATHERKIT_TOKEN;
+const fetcher = Fetcher.for<paths>();
+fetcher.configure(!baseUrl ? {
+  baseUrl: "assets/mock-data/weather.json?"
+} : {
+  baseUrl,
+  init: {
+    headers: {
+      Authorization: `Bearer ${authKey}`
+    }
+  }
+});
 
+const fetchWeather = fetcher.path("/api/v1/weather/{language}/{latitude}/{longitude}").method('get').create();
+
+export function useWeather(locationName: string) {
+  const { location, isMockData } = useLocation(locationName);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentWeather, setCurrentWeather] = useState<CurrentWeatherModel>();
   const [hourlyWeather, setHourlyWeather] = useState<HourlyWeatherModel>();
@@ -17,22 +32,8 @@ export function useWeather(locationName: string, useMockData: boolean) {
   useEffect(() => {
     setIsLoading(true);
     if (location) {
-      const fetcher = Fetcher.for<paths>();
-      fetcher.configure(useMockData ? {
-        baseUrl: "assets/mock-data/weather.json?"
-      } : {
-        baseUrl: import.meta.env.VITE_APP_WEATHERKIT_BASEURL,
-        init: {
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_APP_WEATHERKIT_TOKEN}`
-          }
-        }
-      });
-
       const oneDay = 24 * 60 * 60 * 1000;
       const tomorrow = Date.now() + oneDay;
-
-      const fetchWeather = fetcher.path("/api/v1/weather/{language}/{latitude}/{longitude}").method('get').create();
       fetchWeather({
         dataSets: ["currentWeather", "forecastHourly", "forecastDaily"],
         language: navigator.language,
@@ -56,7 +57,7 @@ export function useWeather(locationName: string, useMockData: boolean) {
           setTimeout(() => setIsLoading(false), 100);
         });
     }
-  }, [location, useMockData, handleError]);
+  }, [location, handleError]);
 
   return {
     isLoading,
@@ -64,5 +65,6 @@ export function useWeather(locationName: string, useMockData: boolean) {
     currentWeather,
     hourlyWeather,
     dailyWeather,
+    isMockData: isMockData || !baseUrl
   };
 }
