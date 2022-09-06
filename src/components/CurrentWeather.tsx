@@ -8,7 +8,7 @@ import {
   TextBlock,
   UniformGrid
 } from '@ringozz/react-noesis';
-import { CurrentWeatherDetailsModel } from '../models';
+import { conditionCodeToLabel, CurrentWeatherDetailsModel } from '../models';
 
 type CurrentWeatherProps = {
   data: CurrentWeatherDetailsModel;
@@ -40,7 +40,7 @@ export function CurrentWeather({ data }: CurrentWeatherProps) {
           <Span>{Math.round(data.temperatureApparent)}°</Span>
         </TextBlock>
         <TextBlock HorizontalAlignment={HorizontalAlignment.Center}>
-          {data.conditionCode}
+          {conditionCodeToLabel(data.conditionCode)}
         </TextBlock>
       </StackPanel>
     </UniformGrid>

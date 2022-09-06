@@ -10,3 +10,7 @@ export type HourlyWeatherModel = WeatherKit["schemas"]["HourlyForecast"];
 export type HourlyWeatherDetailsModel = WeatherKit["schemas"]["HourWeatherConditions"];
 export type DailyWeatherModel = WeatherKit["schemas"]["DailyForecast"];
 export type DailyWeatherDetailsModel = WeatherKit["schemas"]["DayWeatherConditions"];
+
+export function conditionCodeToLabel(code: string) {
+  return code.replace(/([A-Z])/g, (x) => " " + x.toLowerCase()).replace(/^ /, "");
+}
