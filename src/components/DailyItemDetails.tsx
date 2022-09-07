@@ -2,7 +2,7 @@ import { WeatherKit } from '../models';
 import { DetailsGrid } from './common';
 
 type DailyItemDetailsProps = {
-  data: WeatherKit.DailyWeatherDetailsModel;
+  data: WeatherKit.DayWeatherConditions;
 };
 
 export function DailyItemDetails({ data }: DailyItemDetailsProps) {
