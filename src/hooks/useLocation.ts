@@ -34,25 +34,16 @@ export function useLocation(locationName: string) {
             loc: `${pos.coords.latitude},${pos.coords.longitude}`,
             lang: navigator.language,
           }).then((response) => response.data)
-            .then((data) => {
-              setLocation(data.results[0]);
-            })
+            .then((data) => setLocation(data.results[0]))
             .catch(handleError);
-        }, () => {
-          handleError({
-            message: "Location - Please enable access location in the browser",
-          });
-        }
-        );
+        }, handleError);
       }
     } else {
       fetchGeocode({
         q: locationName,
         lang: navigator.language,
       }).then((response) => response.data)
-        .then((data) => {
-          setLocation(data.results[0]);
-        })
+        .then((data) => setLocation(data.results[0]))
         .catch(handleError);
     }
   }, [locationName, handleError]);
