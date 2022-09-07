@@ -9,7 +9,7 @@ import {
   TextBlock,
   VerticalAlignment
 } from '@ringozz/react-noesis';
-import { weatherConditionDescription, DailyWeatherDetailsModel } from '../models';
+import { DailyWeatherDetailsModel, weatherConditionDescription, weatherIcon } from '../models';
 
 type DailyItemProps = {
   data: DailyWeatherDetailsModel;
@@ -17,7 +17,6 @@ type DailyItemProps = {
 };
 
 export function DailyItem({ data, onClick }: DailyItemProps) {
-  const weatherCode = /*data.conditionCode ||*/ '01d';
   return (
     <Button
       Margin={4}
@@ -37,7 +36,7 @@ export function DailyItem({ data, onClick }: DailyItemProps) {
           HorizontalAlignment={HorizontalAlignment.Left}
           Width={40}
           Height={40}
-          Source={`assets/icon_${weatherCode}.png`}
+          Source={weatherIcon(data)}
         />
         <TextBlock
           Grid$Column={1}

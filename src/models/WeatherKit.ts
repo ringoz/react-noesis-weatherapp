@@ -474,8 +474,8 @@ export interface components {
       | "Hot"
       | "Hurricane"
       | "IsolatedThunderstorms"
-      | "SevereThunderstorm"
-      | "Thunderstorm"
+      | "SevereThunderstorms"
+      | "Thunderstorms"
       | "Tornado"
       | "TropicalStorm";
     /**

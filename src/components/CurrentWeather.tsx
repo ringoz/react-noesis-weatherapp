@@ -8,21 +8,20 @@ import {
   TextBlock,
   UniformGrid
 } from '@ringozz/react-noesis';
-import { weatherConditionDescription, CurrentWeatherDetailsModel } from '../models';
+import { CurrentWeatherDetailsModel, weatherConditionDescription, weatherIcon } from '../models';
 
 type CurrentWeatherProps = {
   data: CurrentWeatherDetailsModel;
 };
 
 export function CurrentWeather({ data }: CurrentWeatherProps) {
-  const weatherCode = /*data.conditionCode ||*/ '01d';
   return (
     <UniformGrid Margin={8} Columns={2}>
       <StackPanel Grid$Column={0}>
         <Image
           Width={120}
           Height={120}
-          Source={`assets/icon_${weatherCode}.png`}
+          Source={weatherIcon(data)}
         />
       </StackPanel>
       <StackPanel Grid$Column={1}>
