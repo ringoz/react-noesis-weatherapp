@@ -1,30 +1,29 @@
-import {
-  WeatherDetailsModel,
-  ConditionCode,
-  CurrentWeatherDetailsModel,
-} from '../../models';
+import { WeatherKit } from '../../models';
 import { FrameworkElement, Image, XamlAttributes } from '@ringozz/react-noesis';
 
 type WeatherIconProps = {
-  data: WeatherDetailsModel;
+  data: WeatherKit.WeatherConditions;
 } & XamlAttributes<FrameworkElement>;
 
 export function WeatherIcon({ data, ...rest }: WeatherIconProps) {
-  const weatherCode = weatherCodes[data.conditionCode as ConditionCode];
+  const weatherCode =
+    weatherCodes[data.conditionCode as WeatherKit.ConditionCode];
   const timeCode =
-    (data as CurrentWeatherDetailsModel).daylight !== false ? 'd' : 'n';
+    (data as WeatherKit.CurrentWeatherConditions).daylight !== false
+      ? 'd'
+      : 'n';
   return (
     <Image Source={`assets/icon_${weatherCode}${timeCode}.png`} {...rest} />
   );
 }
 
-export function weatherDesc(data: WeatherDetailsModel) {
+export function weatherDesc(data: WeatherKit.WeatherConditions) {
   return data.conditionCode
     .replace(/([A-Z])/g, (x) => ' ' + x.toLowerCase())
     .replace(/^ /, '');
 }
 
-const weatherCodes: Record<ConditionCode, string> = {
+const weatherCodes: Record<WeatherKit.ConditionCode, string> = {
   Clear: '01',
   Cloudy: '03',
   Dust: '50',

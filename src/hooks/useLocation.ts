@@ -1,7 +1,7 @@
 import { Fetcher } from 'openapi-typescript-fetch';
 import { useEffect, useState } from 'react';
 import { useErrorHandler } from 'react-error-boundary';
-import { LocationModel } from '../models';
+import { MapKit } from '../models';
 import { paths } from '../models/MapKit';
 
 const baseUrl = import.meta.env.VITE_APP_MAPKIT_BASEURL;
@@ -21,7 +21,7 @@ const fetchGeocode = fetcher.path('/v1/geocode').method('get').create();
 const fetchReverse = fetcher.path('/v1/reverseGeocode').method('get').create();
 
 export function useLocation(locationName: string) {
-  const [location, setLocation] = useState<LocationModel>();
+  const [location, setLocation] = useState<MapKit.LocationModel>();
   const handleError = useErrorHandler();
 
   useEffect(() => {

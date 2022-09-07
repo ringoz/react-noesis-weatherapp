@@ -1,20 +1,20 @@
-import { components as MapKit } from './MapKit';
-export type LocationModel = MapKit['schemas']['Place'];
-export type LocationPositionModel = MapKit['schemas']['Location'];
+import { components as MK } from './MapKit';
+export namespace MapKit {
+  export type Place = MK['schemas']['Place'];
+  export type Location = MK['schemas']['Location'];
+}
 
-import { components as WeatherKit } from './WeatherKit';
-export type WeatherMetadataModel = WeatherKit['schemas']['Metadata'];
-export type CurrentWeatherModel = WeatherKit['schemas']['CurrentWeather'];
-export type HourlyWeatherModel = WeatherKit['schemas']['HourlyForecast'];
-export type HourlyWeatherDetailsModel =
-  WeatherKit['schemas']['HourWeatherConditions'];
-export type CurrentWeatherDetailsModel =
-  | CurrentWeatherModel
-  | HourlyWeatherDetailsModel;
-export type DailyWeatherModel = WeatherKit['schemas']['DailyForecast'];
-export type DailyWeatherDetailsModel =
-  WeatherKit['schemas']['DayWeatherConditions'];
-export type WeatherDetailsModel =
-  | CurrentWeatherDetailsModel
-  | DailyWeatherDetailsModel;
-export type ConditionCode = WeatherKit['schemas']['ConditionCode'];
+import { components as WK } from './WeatherKit';
+export namespace WeatherKit {
+  export type Metadata = WK['schemas']['Metadata'];
+  export type CurrentWeather = WK['schemas']['CurrentWeather'];
+  export type HourlyForecast = WK['schemas']['HourlyForecast'];
+  export type HourWeatherConditions = WK['schemas']['HourWeatherConditions'];
+  export type CurrentWeatherConditions = CurrentWeather | HourWeatherConditions;
+  export type DailyForecast = WK['schemas']['DailyForecast'];
+  export type DayWeatherConditions = WK['schemas']['DayWeatherConditions'];
+  export type WeatherConditions =
+    | CurrentWeatherConditions
+    | DayWeatherConditions;
+  export type ConditionCode = WK['schemas']['ConditionCode'];
+}

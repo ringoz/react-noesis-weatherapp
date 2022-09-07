@@ -8,11 +8,11 @@ import {
   TextBlock,
   VerticalAlignment,
 } from '@ringozz/react-noesis';
-import { DailyWeatherDetailsModel } from '../models';
+import { WeatherKit } from '../models';
 import { WeatherIcon, weatherDesc } from './common/WeatherIcon';
 
 type DailyItemProps = {
-  data: DailyWeatherDetailsModel;
+  data: WeatherKit.DayWeatherConditions;
   onClick: () => void;
 };
 

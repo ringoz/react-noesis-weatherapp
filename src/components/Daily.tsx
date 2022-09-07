@@ -6,18 +6,18 @@ import {
   Visibility,
 } from '@ringozz/react-noesis';
 import { useState } from 'react';
-import { DailyWeatherDetailsModel, DailyWeatherModel } from '../models';
+import { WeatherKit } from '../models';
 import { DailyItem } from './DailyItem';
 import { DailyItemDetails } from './DailyItemDetails';
 
 type DailyProps = {
-  data: DailyWeatherModel;
+  data: WeatherKit.DailyForecast;
 };
 
 export function Daily({ data }: DailyProps) {
   const [activeIndex, setActiveIndex] = useState<string>();
 
-  const clickHandler = (d: DailyWeatherDetailsModel) => {
+  const clickHandler = (d: WeatherKit.DayWeatherConditions) => {
     if (d.forecastStart === activeIndex) {
       setActiveIndex(undefined);
     } else {

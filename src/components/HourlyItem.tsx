@@ -3,11 +3,11 @@ import {
   StackPanel,
   TextBlock,
 } from '@ringozz/react-noesis';
-import { HourlyWeatherDetailsModel } from '../models';
+import { WeatherKit } from '../models';
 import { WeatherIcon } from './common/WeatherIcon';
 
 type HourlyItemProps = {
-  data: HourlyWeatherDetailsModel;
+  data: WeatherKit.HourlyWeatherDetailsModel;
 };
 
 export function HourlyItem({ data }: HourlyItemProps) {

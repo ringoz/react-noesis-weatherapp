@@ -8,18 +8,18 @@ import {
   TextBlock,
 } from '@ringozz/react-noesis';
 import { useState } from 'react';
-import { HourlyWeatherDetailsModel, HourlyWeatherModel } from '../models';
+import { WeatherKit } from '../models';
 import { HourlyItem } from './HourlyItem';
 
 type HourlyProps = {
-  data: HourlyWeatherModel;
-  clickHandler: (h: HourlyWeatherDetailsModel) => void;
+  data: WeatherKit.HourlyForecast;
+  clickHandler: (h: WeatherKit.HourWeatherConditions) => void;
 };
 
 export function Hourly({ data, clickHandler }: HourlyProps) {
   const [activeIndex, setActiveIndex] = useState<string>();
 
-  const onClickHandler = (h: HourlyWeatherDetailsModel) => {
+  const onClickHandler = (h: WeatherKit.HourWeatherConditions) => {
     setActiveIndex(h.forecastStart);
     clickHandler(h);
   };

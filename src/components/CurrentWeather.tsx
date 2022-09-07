@@ -7,11 +7,11 @@ import {
   TextBlock,
   UniformGrid,
 } from '@ringozz/react-noesis';
-import { CurrentWeatherDetailsModel } from '../models';
+import { WeatherKit } from '../models';
 import { weatherDesc, WeatherIcon } from './common/WeatherIcon';
 
 type CurrentWeatherProps = {
-  data: CurrentWeatherDetailsModel;
+  data: WeatherKit.CurrentWeatherDetailsModel;
 };
 
 export function CurrentWeather({ data }: CurrentWeatherProps) {

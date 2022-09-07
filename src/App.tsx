@@ -17,11 +17,11 @@ import {
 } from './components';
 import { Error, ErrorHandler, Loading, MockData } from './components/common';
 import { useWeather } from './hooks';
-import { CurrentWeatherDetailsModel } from './models';
+import { WeatherKit } from './models';
 
 export function App() {
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =
-    useState<CurrentWeatherDetailsModel>();
+    useState<WeatherKit.CurrentWeatherConditions>();
   const [currentLocationName, setCurrentLocationName] = useState<string>('');
   const {
     isLoading,
@@ -36,7 +36,9 @@ export function App() {
     setCurrentWeatherSelectedItem(currentWeather);
   }, [currentWeather]);
 
-  const hourlyItemClickHandler = (current: CurrentWeatherDetailsModel) => {
+  const hourlyItemClickHandler = (
+    current: WeatherKit.CurrentWeatherConditions
+  ) => {
     setCurrentWeatherSelectedItem(current);
   };
 
