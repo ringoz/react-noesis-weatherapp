@@ -5,11 +5,11 @@ import {
   FontWeight,
   Grid,
   HorizontalAlignment,
-  Image,
   TextBlock,
   VerticalAlignment,
 } from '@ringozz/react-noesis';
-import { DailyWeatherDetailsModel, weatherDesc, weatherIcon } from '../models';
+import { DailyWeatherDetailsModel } from '../models';
+import { WeatherIcon, weatherDesc } from './common/WeatherIcon';
 
 type DailyItemProps = {
   data: DailyWeatherDetailsModel;
@@ -31,12 +31,12 @@ export function DailyItem({ data, onClick }: DailyItemProps) {
           <ColumnDefinition Width="2*" />
           <ColumnDefinition Width={70} />
         </Grid.ColumnDefinitions>
-        <Image
+        <WeatherIcon
           Grid$Column={0}
           HorizontalAlignment={HorizontalAlignment.Left}
           Width={40}
           Height={40}
-          Source={weatherIcon(data)}
+          data={data}
         />
         <TextBlock
           Grid$Column={1}
