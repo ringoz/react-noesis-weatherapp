@@ -4,9 +4,6 @@ import {
   FontWeight,
   HeaderedContentControl,
   Orientation,
-  PanningMode,
-  ScrollBarVisibility,
-  ScrollViewer,
   StackPanel,
   TextBlock
 } from '@ringozz/react-noesis';
@@ -37,33 +34,27 @@ export function Hourly({ data, clickHandler }: HourlyProps) {
           Hourly
         </TextBlock>
       </HeaderedContentControl.Header>
-      <ScrollViewer
-        Margin={4}
-        PanningMode={PanningMode.HorizontalOnly}
-        HorizontalScrollBarVisibility={ScrollBarVisibility.Hidden}
-      >
-        <StackPanel Orientation={Orientation.Horizontal}>
-          {data.hours.map((h) => (
-            <Button
-              key={h.forecastStart}
-              IsEnabled={activeIndex !== h.forecastStart}
-              Background={DynamicResource(
-                activeIndex === h.forecastStart
-                  ? 'Brush.TextBox.Focused'
-                  : 'Brush.Track.Normal'
-              )}
-              TextBlock$Foreground={DynamicResource('Brush.Foreground.Normal')}
-              TextBlock$FontWeight={
-                activeIndex === h.forecastStart ? FontWeight.Bold : FontWeight.Normal
-              }
-              onClick={() => onClickHandler(h)}
-              Margin={4}
-            >
-              <HourlyItem data={h}></HourlyItem>
-            </Button>
-          ))}
-        </StackPanel>
-      </ScrollViewer>
+      <StackPanel Margin={4} Orientation={Orientation.Horizontal}>
+        {data.hours.map((h) => (
+          <Button
+            key={h.forecastStart}
+            IsEnabled={activeIndex !== h.forecastStart}
+            Background={DynamicResource(
+              activeIndex === h.forecastStart
+                ? 'Brush.TextBox.Focused'
+                : 'Brush.Track.Normal'
+            )}
+            TextBlock$Foreground={DynamicResource('Brush.Foreground.Normal')}
+            TextBlock$FontWeight={
+              activeIndex === h.forecastStart ? FontWeight.Bold : FontWeight.Normal
+            }
+            onClick={() => onClickHandler(h)}
+            Margin={4}
+          >
+            <HourlyItem data={h}></HourlyItem>
+          </Button>
+        ))}
+      </StackPanel>
     </HeaderedContentControl>
   );
 }
