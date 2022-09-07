@@ -2,7 +2,7 @@ import {
   HorizontalAlignment,
   Image,
   StackPanel,
-  TextBlock
+  TextBlock,
 } from '@ringozz/react-noesis';
 import { HourlyWeatherDetailsModel, weatherIcon } from '../models';
 
@@ -16,12 +16,7 @@ export function HourlyItem({ data }: HourlyItemProps) {
       <TextBlock HorizontalAlignment={HorizontalAlignment.Center}>
         {new Date(data.forecastStart!).getHours()}:00
       </TextBlock>
-      <Image
-        Margin={8}
-        Width={40}
-        Height={40}
-        Source={weatherIcon(data)}
-      />
+      <Image Margin={8} Width={40} Height={40} Source={weatherIcon(data)} />
       <TextBlock HorizontalAlignment={HorizontalAlignment.Center}>
         {Math.round(data.temperature)}°
       </TextBlock>

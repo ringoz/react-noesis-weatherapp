@@ -12,9 +12,13 @@ import {
   TextBlock,
   TextBox,
   ThemeContext,
-  VerticalAlignment
+  VerticalAlignment,
 } from '@ringozz/react-noesis';
-import { CurrentWeatherDetailsModel, CurrentWeatherModel, HourlyWeatherDetailsModel } from '../models';
+import {
+  CurrentWeatherDetailsModel,
+  CurrentWeatherModel,
+  HourlyWeatherDetailsModel,
+} from '../models';
 
 type HeaderProps = {
   locality?: string;
@@ -23,9 +27,17 @@ type HeaderProps = {
   changeLocation: (location: string) => void;
 };
 
-export function Header({ locality, country, data, changeLocation }: HeaderProps) {
+export function Header({
+  locality,
+  country,
+  data,
+  changeLocation,
+}: HeaderProps) {
   const getFormattedDate = () => {
-    const selectedDate = new Date((data as CurrentWeatherModel).asOf ?? (data as HourlyWeatherDetailsModel).forecastStart);
+    const selectedDate = new Date(
+      (data as CurrentWeatherModel).asOf ??
+        (data as HourlyWeatherDetailsModel).forecastStart
+    );
     const date = selectedDate.toLocaleString('en-US', {
       day: 'numeric',
       weekday: 'long',

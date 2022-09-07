@@ -6,9 +6,13 @@ import {
   Span,
   StackPanel,
   TextBlock,
-  UniformGrid
+  UniformGrid,
 } from '@ringozz/react-noesis';
-import { CurrentWeatherDetailsModel, weatherDesc, weatherIcon } from '../models';
+import {
+  CurrentWeatherDetailsModel,
+  weatherDesc,
+  weatherIcon,
+} from '../models';
 
 type CurrentWeatherProps = {
   data: CurrentWeatherDetailsModel;
@@ -18,11 +22,7 @@ export function CurrentWeather({ data }: CurrentWeatherProps) {
   return (
     <UniformGrid Margin={8} Columns={2}>
       <StackPanel Grid$Column={0}>
-        <Image
-          Width={120}
-          Height={120}
-          Source={weatherIcon(data)}
-        />
+        <Image Width={120} Height={120} Source={weatherIcon(data)} />
       </StackPanel>
       <StackPanel Grid$Column={1}>
         <TextBlock

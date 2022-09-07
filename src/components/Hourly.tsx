@@ -5,13 +5,10 @@ import {
   HeaderedContentControl,
   Orientation,
   StackPanel,
-  TextBlock
+  TextBlock,
 } from '@ringozz/react-noesis';
 import { useState } from 'react';
-import {
-  HourlyWeatherDetailsModel,
-  HourlyWeatherModel
-} from '../models';
+import { HourlyWeatherDetailsModel, HourlyWeatherModel } from '../models';
 import { HourlyItem } from './HourlyItem';
 
 type HourlyProps = {
@@ -46,7 +43,9 @@ export function Hourly({ data, clickHandler }: HourlyProps) {
             )}
             TextBlock$Foreground={DynamicResource('Brush.Foreground.Normal')}
             TextBlock$FontWeight={
-              activeIndex === h.forecastStart ? FontWeight.Bold : FontWeight.Normal
+              activeIndex === h.forecastStart
+                ? FontWeight.Bold
+                : FontWeight.Normal
             }
             onClick={() => onClickHandler(h)}
             Margin={4}

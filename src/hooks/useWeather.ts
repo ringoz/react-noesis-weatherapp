@@ -1,26 +1,31 @@
-import { Fetcher } from "openapi-typescript-fetch";
-import { useEffect, useState } from "react";
-import { useErrorHandler } from "react-error-boundary";
-import { useLocation } from "./useLocation";
-import { CurrentWeatherModel, DailyWeatherModel, HourlyWeatherModel } from "../models";
-import { paths } from "../models/WeatherKit";
+import { Fetcher } from 'openapi-typescript-fetch';
+import { useEffect, useState } from 'react';
+import { useErrorHandler } from 'react-error-boundary';
+import { useLocation } from './useLocation';
+import {
+  CurrentWeatherModel,
+  DailyWeatherModel,
+  HourlyWeatherModel,
+} from '../models';
+import { paths } from '../models/WeatherKit';
 
 const baseUrl = import.meta.env.VITE_APP_WEATHERKIT_BASEURL;
 const authKey = import.meta.env.VITE_APP_WEATHERKIT_TOKEN;
 
 const fetcher = Fetcher.for<paths>();
-fetcher.configure(!baseUrl ? {
-  baseUrl: "assets/mock-data/weather.json?"
-} : {
-  baseUrl,
+fetcher.configure({
+  baseUrl: baseUrl ?? 'assets/mock-data/weather.json?',
   init: {
     headers: {
-      Authorization: `Bearer ${authKey}`
-    }
-  }
+      Authorization: `Bearer ${authKey}`,
+    },
+  },
 });
 
-const fetchWeather = fetcher.path("/api/v1/weather/{language}/{latitude}/{longitude}").method('get').create();
+const fetchWeather = fetcher
+  .path('/api/v1/weather/{language}/{latitude}/{longitude}')
+  .method('get')
+  .create();
 
 export function useWeather(locationName: string) {
   const { location, isMockData } = useLocation(locationName);
@@ -37,7 +42,7 @@ export function useWeather(locationName: string) {
       const oneDay = 24 * oneHour;
       const tomorrow = Date.now() + oneDay;
       fetchWeather({
-        dataSets: ["currentWeather", "forecastHourly", "forecastDaily"],
+        dataSets: ['currentWeather', 'forecastHourly', 'forecastDaily'],
         language: 'en-US',
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         latitude: location.coordinate.latitude,
@@ -45,8 +50,9 @@ export function useWeather(locationName: string) {
         dailyStart: new Date(tomorrow).toISOString(),
         dailyEnd: new Date(tomorrow + 7 * oneDay).toISOString(),
         hourlyStart: new Date(Date.now() + oneHour).toISOString(),
-        hourlyEnd: new Date(tomorrow).toISOString()
-      }).then((response) => response.data)
+        hourlyEnd: new Date(tomorrow).toISOString(),
+      })
+        .then((response) => response.data)
         .then((data) => {
           setCurrentWeather(data.currentWeather!);
           setHourlyWeather(data.forecastHourly!);
@@ -65,6 +71,6 @@ export function useWeather(locationName: string) {
     currentWeather,
     hourlyWeather,
     dailyWeather,
-    isMockData: isMockData || !baseUrl
+    isMockData: isMockData || !baseUrl,
   };
 }

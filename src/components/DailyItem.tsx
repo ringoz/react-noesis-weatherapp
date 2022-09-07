@@ -7,7 +7,7 @@ import {
   HorizontalAlignment,
   Image,
   TextBlock,
-  VerticalAlignment
+  VerticalAlignment,
 } from '@ringozz/react-noesis';
 import { DailyWeatherDetailsModel, weatherDesc, weatherIcon } from '../models';
 
@@ -60,7 +60,8 @@ export function DailyItem({ data, onClick }: DailyItemProps) {
           VerticalAlignment={VerticalAlignment.Center}
           HorizontalAlignment={HorizontalAlignment.Right}
         >
-          {Math.round(data.temperatureMin)}° / {Math.round(data.temperatureMax)}°
+          {Math.round(data.temperatureMin)}° / {Math.round(data.temperatureMax)}
+          °
         </TextBlock>
       </Grid>
     </Button>

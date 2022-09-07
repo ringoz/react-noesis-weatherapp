@@ -1,39 +1,38 @@
-import { Fetcher } from "openapi-typescript-fetch";
-import { useEffect, useState } from "react";
-import { useErrorHandler } from "react-error-boundary";
-import { LocationModel } from "../models";
-import { paths } from "../models/MapKit";
+import { Fetcher } from 'openapi-typescript-fetch';
+import { useEffect, useState } from 'react';
+import { useErrorHandler } from 'react-error-boundary';
+import { LocationModel } from '../models';
+import { paths } from '../models/MapKit';
 
 const baseUrl = import.meta.env.VITE_APP_MAPKIT_BASEURL;
 const authKey = import.meta.env.VITE_APP_MAPKIT_TOKEN;
 
 const fetcher = Fetcher.for<paths>();
-fetcher.configure(!baseUrl ? {
-  baseUrl: "assets/mock-data/geocode.json?"
-} : {
-  baseUrl,
+fetcher.configure({
+  baseUrl: baseUrl ?? 'assets/mock-data/geocode.json?',
   init: {
     headers: {
-      Authorization: `Bearer ${authKey}`
-    }
-  }
+      Authorization: `Bearer ${authKey}`,
+    },
+  },
 });
 
-const fetchGeocode = fetcher.path("/v1/geocode").method('get').create();
-const fetchReverseGeocode = fetcher.path("/v1/reverseGeocode").method('get').create();
+const fetchGeocode = fetcher.path('/v1/geocode').method('get').create();
+const fetchReverse = fetcher.path('/v1/reverseGeocode').method('get').create();
 
 export function useLocation(locationName: string) {
   const [location, setLocation] = useState<LocationModel>();
   const handleError = useErrorHandler();
 
   useEffect(() => {
-    if (locationName === "" && baseUrl) {
+    if (locationName === '' && baseUrl) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
-          fetchReverseGeocode({
+          fetchReverse({
             loc: `${pos.coords.latitude},${pos.coords.longitude}`,
             lang: 'en-US',
-          }).then((response) => response.data)
+          })
+            .then((response) => response.data)
             .then((data) => setLocation(data.results[0]))
             .catch(handleError);
         }, handleError);
@@ -42,7 +41,8 @@ export function useLocation(locationName: string) {
       fetchGeocode({
         q: locationName,
         lang: 'en-US',
-      }).then((response) => response.data)
+      })
+        .then((response) => response.data)
         .then((data) => setLocation(data.results[0]))
         .catch(handleError);
     }
@@ -50,6 +50,6 @@ export function useLocation(locationName: string) {
 
   return {
     location,
-    isMockData: !baseUrl
+    isMockData: !baseUrl,
   };
 }

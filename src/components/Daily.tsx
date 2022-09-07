@@ -3,7 +3,7 @@ import {
   HeaderedContentControl,
   StackPanel,
   TextBlock,
-  Visibility
+  Visibility,
 } from '@ringozz/react-noesis';
 import { useState } from 'react';
 import { DailyWeatherDetailsModel, DailyWeatherModel } from '../models';
@@ -34,13 +34,12 @@ export function Daily({ data }: DailyProps) {
       <StackPanel Margin={4}>
         {data.days.map((d) => (
           <StackPanel key={d.forecastStart}>
-            <DailyItem
-              data={d}
-              onClick={() => clickHandler(d)}
-            />
+            <DailyItem data={d} onClick={() => clickHandler(d)} />
             <StackPanel
               Visibility={
-                activeIndex === d.forecastStart ? Visibility.Visible : Visibility.Collapsed
+                activeIndex === d.forecastStart
+                  ? Visibility.Visible
+                  : Visibility.Collapsed
               }
             >
               <DailyItemDetails data={d} />
