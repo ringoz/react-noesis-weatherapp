@@ -27,11 +27,10 @@ export function useWeather(locationName: string) {
   const { location, isMockData } = useLocation(locationName);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentWeather, setCurrentWeather] =
-    useState<WeatherKit.CurrentWeatherModel>();
+    useState<WeatherKit.CurrentWeather>();
   const [hourlyWeather, setHourlyWeather] =
-    useState<WeatherKit.HourlyWeatherModel>();
-  const [dailyWeather, setDailyWeather] =
-    useState<WeatherKit.DailyWeatherModel>();
+    useState<WeatherKit.HourlyForecast>();
+  const [dailyWeather, setDailyWeather] = useState<WeatherKit.DailyForecast>();
   const handleError = useErrorHandler();
 
   useEffect(() => {

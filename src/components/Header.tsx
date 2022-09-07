@@ -19,7 +19,7 @@ import { WeatherKit } from '../models';
 type HeaderProps = {
   locality?: string;
   country?: string;
-  data: WeatherKit.CurrentWeatherDetailsModel;
+  data: WeatherKit.CurrentWeatherConditions;
   changeLocation: (location: string) => void;
 };
 
@@ -31,8 +31,8 @@ export function Header({
 }: HeaderProps) {
   const getFormattedDate = () => {
     const selectedDate = new Date(
-      (data as WeatherKit.CurrentWeatherModel).asOf ??
-        (data as WeatherKit.HourlyWeatherDetailsModel).forecastStart
+      (data as WeatherKit.CurrentWeather).asOf ??
+        (data as WeatherKit.HourWeatherConditions).forecastStart
     );
     const date = selectedDate.toLocaleString('en-US', {
       day: 'numeric',

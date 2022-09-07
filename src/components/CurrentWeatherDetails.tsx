@@ -3,14 +3,14 @@ import { WeatherKit } from '../models';
 import { DetailsGrid } from './common';
 
 type CurrentWeatherProps = {
-  data: WeatherKit.CurrentWeatherDetailsModel;
+  data: WeatherKit.CurrentWeatherConditions;
 };
 
 export function CurrentWeatherDetails({ data }: CurrentWeatherProps) {
-  const rainChance = (data as WeatherKit.HourlyWeatherDetailsModel)
+  const rainChance = (data as WeatherKit.HourWeatherConditions)
     .precipitationChance;
   const rainIntensity =
-    (data as WeatherKit.CurrentWeatherModel).precipitationIntensity ?? 0;
+    (data as WeatherKit.CurrentWeather).precipitationIntensity ?? 0;
   return (
     <Border Margin={8} Background={DynamicResource('Brush.TextBox.Focused')}>
       <DetailsGrid

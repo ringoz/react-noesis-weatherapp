@@ -21,7 +21,7 @@ const fetchGeocode = fetcher.path('/v1/geocode').method('get').create();
 const fetchReverse = fetcher.path('/v1/reverseGeocode').method('get').create();
 
 export function useLocation(locationName: string) {
-  const [location, setLocation] = useState<MapKit.LocationModel>();
+  const [location, setLocation] = useState<MapKit.Place>();
   const handleError = useErrorHandler();
 
   useEffect(() => {

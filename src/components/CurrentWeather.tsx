@@ -11,7 +11,7 @@ import { WeatherKit } from '../models';
 import { weatherDesc, WeatherIcon } from './common/WeatherIcon';
 
 type CurrentWeatherProps = {
-  data: WeatherKit.CurrentWeatherDetailsModel;
+  data: WeatherKit.CurrentWeatherConditions;
 };
 
 export function CurrentWeather({ data }: CurrentWeatherProps) {

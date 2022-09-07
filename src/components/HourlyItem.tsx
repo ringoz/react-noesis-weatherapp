@@ -7,7 +7,7 @@ import { WeatherKit } from '../models';
 import { WeatherIcon } from './common/WeatherIcon';
 
 type HourlyItemProps = {
-  data: WeatherKit.HourlyWeatherDetailsModel;
+  data: WeatherKit.HourWeatherConditions;
 };
 
 export function HourlyItem({ data }: HourlyItemProps) {
