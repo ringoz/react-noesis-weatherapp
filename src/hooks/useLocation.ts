@@ -27,25 +27,22 @@ export function useLocation(locationName: string) {
   const handleError = useErrorHandler();
 
   useEffect(() => {
-    if (locationName === "") {
+    if (locationName === "" && baseUrl) {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (pos: GeolocationPosition) => {
-            fetchReverseGeocode({
-              loc: `${pos.coords.latitude},${pos.coords.longitude}`,
-              lang: navigator.language,
-            }).then((response) => response.data)
-              .then((data) => {
-                setLocation(data.results[0]);
-              })
-              .catch(handleError);
-          },
-          () => {
-            handleError({
-              message:
-                "Location - Please enable access location in the browser",
-            });
-          }
+        navigator.geolocation.getCurrentPosition((pos) => {
+          fetchReverseGeocode({
+            loc: `${pos.coords.latitude},${pos.coords.longitude}`,
+            lang: navigator.language,
+          }).then((response) => response.data)
+            .then((data) => {
+              setLocation(data.results[0]);
+            })
+            .catch(handleError);
+        }, () => {
+          handleError({
+            message: "Location - Please enable access location in the browser",
+          });
+        }
         );
       }
     } else {
