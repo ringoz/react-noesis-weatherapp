@@ -15,12 +15,12 @@ export function DailyItemDetails({ data }: DailyItemDetailsProps) {
         `Clouds: ${Math.round(data.daytimeForecast!.cloudCover * 100)}%`,
         `Wind speed: ${data.daytimeForecast!.windSpeed} m/s`,
         `UV Index: ${data.maxUvIndex}`,
-        `Sunrise: ${new Date(data.sunrise!).toLocaleString('en-GB', {
+        `Sunrise: ${new Date(data.sunrise!).toLocaleString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
           hour12: false,
         })}`,
-        `Sunset: ${new Date(data.sunset!).toLocaleString('en-GB', {
+        `Sunset: ${new Date(data.sunset!).toLocaleString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
           hour12: false,

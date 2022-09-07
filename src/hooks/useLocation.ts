@@ -32,7 +32,7 @@ export function useLocation(locationName: string) {
         navigator.geolocation.getCurrentPosition((pos) => {
           fetchReverseGeocode({
             loc: `${pos.coords.latitude},${pos.coords.longitude}`,
-            lang: navigator.language,
+            lang: 'en-US',
           }).then((response) => response.data)
             .then((data) => setLocation(data.results[0]))
             .catch(handleError);
@@ -41,7 +41,7 @@ export function useLocation(locationName: string) {
     } else {
       fetchGeocode({
         q: locationName,
-        lang: navigator.language,
+        lang: 'en-US',
       }).then((response) => response.data)
         .then((data) => setLocation(data.results[0]))
         .catch(handleError);

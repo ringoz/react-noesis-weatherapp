@@ -24,22 +24,22 @@ type HeaderProps = {
 };
 
 export function Header({ locality, country, data, changeLocation }: HeaderProps) {
-  const getFormatedDate = () => {
+  const getFormattedDate = () => {
     const selectedDate = new Date((data as CurrentWeatherModel).asOf ?? (data as HourlyWeatherDetailsModel).forecastStart);
-    var date = selectedDate.toLocaleString('en-GB', {
+    const date = selectedDate.toLocaleString('en-US', {
       day: 'numeric',
       weekday: 'long',
       month: 'long',
     });
-    var year = selectedDate.toLocaleString('en-GB', {
+    const year = selectedDate.toLocaleString('en-US', {
       year: 'numeric',
     });
-    var hour = selectedDate.toLocaleString('en-GB', {
+    const hour = selectedDate.toLocaleString('en-US', {
       hour: '2-digit',
       minute: '2-digit',
       hour12: false,
     });
-    return `${date} ${year} ${hour}`;
+    return `${date} ${year}, ${hour}`;
   };
 
   return (
@@ -58,7 +58,7 @@ export function Header({ locality, country, data, changeLocation }: HeaderProps)
         </TextBlock>
         <TextBlock FontSize={20}>{country}</TextBlock>
         <TextBlock Foreground={DynamicResource('Brush.Foreground.Placeholder')}>
-          {getFormatedDate()}
+          {getFormattedDate()}
         </TextBlock>
       </StackPanel>
       <StackPanel

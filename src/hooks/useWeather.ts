@@ -38,7 +38,7 @@ export function useWeather(locationName: string) {
       const tomorrow = Date.now() + oneDay;
       fetchWeather({
         dataSets: ["currentWeather", "forecastHourly", "forecastDaily"],
-        language: navigator.language,
+        language: 'en-US',
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         latitude: location.coordinate.latitude,
         longitude: location.coordinate.longitude,

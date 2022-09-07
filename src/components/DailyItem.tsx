@@ -43,7 +43,7 @@ export function DailyItem({ data, onClick }: DailyItemProps) {
           VerticalAlignment={VerticalAlignment.Center}
           FontWeight={FontWeight.Bold}
         >
-          {new Date(data.forecastStart).toLocaleString('en-GB', {
+          {new Date(data.forecastStart).toLocaleString('en-US', {
             weekday: 'long',
           })}
         </TextBlock>
