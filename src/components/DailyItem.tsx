@@ -9,7 +9,7 @@ import {
   TextBlock,
   VerticalAlignment
 } from '@ringozz/react-noesis';
-import { conditionCodeToLabel, DailyWeatherDetailsModel } from '../models';
+import { weatherConditionDescription, DailyWeatherDetailsModel } from '../models';
 
 type DailyItemProps = {
   data: DailyWeatherDetailsModel;
@@ -54,7 +54,7 @@ export function DailyItem({ data, onClick }: DailyItemProps) {
           HorizontalAlignment={HorizontalAlignment.Right}
           Foreground={DynamicResource('Brush.Foreground.Placeholder')}
         >
-          {conditionCodeToLabel(data.conditionCode)}
+          {weatherConditionDescription(data.conditionCode)}
         </TextBlock>
         <TextBlock
           Grid$Column={3}
