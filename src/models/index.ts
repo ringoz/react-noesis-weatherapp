@@ -11,8 +11,8 @@ export type HourlyWeatherDetailsModel = WeatherKit["schemas"]["HourWeatherCondit
 export type DailyWeatherModel = WeatherKit["schemas"]["DailyForecast"];
 export type DailyWeatherDetailsModel = WeatherKit["schemas"]["DayWeatherConditions"];
 
-export function weatherConditionDescription(conditionCode: string) {
-  return conditionCode.replace(/([A-Z])/g, (x) => " " + x.toLowerCase()).replace(/^ /, "");
+export function weatherDesc(details: CurrentWeatherDetailsModel | DailyWeatherDetailsModel) {
+  return details.conditionCode.replace(/([A-Z])/g, (x) => " " + x.toLowerCase()).replace(/^ /, "");
 }
 
 export function weatherIcon(details: CurrentWeatherDetailsModel | DailyWeatherDetailsModel) {
