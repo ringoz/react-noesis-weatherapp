@@ -2,37 +2,26 @@
    "results": [
       {
          "coordinate": {
-            "latitude": 55.66108,
-            "longitude": 37.4647999
+            "latitude": 41.8892943,
+            "longitude": 12.4935467
          },
          "displayMapRegion": {
-            "southLatitude": 55.6565884235794,
-            "westLongitude": 37.45683734131368,
-            "northLatitude": 55.6655715764206,
-            "eastLongitude": 37.472762458686326
+            "southLatitude": 41.5706219,
+            "westLongitude": 12.1935587,
+            "northLatitude": 42.1409694,
+            "eastLongitude": 12.8558382
          },
-         "name": "Академика Анохина улица, 34 к1",
+         "name": "Rome",
          "formattedAddressLines": [
-            "Академика Анохина улица, 34 к1",
-            "Moscow",
-            "Russia",
-            "119602"
+            "Rome",
+            "Italy"
          ],
          "structuredAddress": {
-            "administrativeArea": "Moscow",
-            "locality": "Moscow",
-            "postCode": "119602",
-            "subLocality": "Troparyovo-Nikulino District",
-            "thoroughfare": "Академика Анохина улица",
-            "subThoroughfare": "34 к1",
-            "fullThoroughfare": "Академика Анохина улица, 34 к1",
-            "dependentLocalities": [
-               "Troparyovo-Nikulino District",
-               "Zapadny Administrative Okrug"
-            ]
+            "administrativeArea": "Lazio",
+            "locality": "Rome"
          },
-         "country": "Russia",
-         "countryCode": "RU"
+         "country": "Italy",
+         "countryCode": "IT"
       }
    ]
 }

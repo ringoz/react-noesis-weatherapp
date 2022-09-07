@@ -23,9 +23,7 @@ type HourlyProps = {
 };
 
 export function Hourly({ data, clickHandler }: HourlyProps) {
-  const [activeIndex, setActiveIndex] = useState(
-    data && data.hours[0] ? data.hours[0].forecastStart : 0
-  );
+  const [activeIndex, setActiveIndex] = useState<string>();
 
   const onClickHandler = (h: HourlyWeatherDetailsModel) => {
     setActiveIndex(h.forecastStart);

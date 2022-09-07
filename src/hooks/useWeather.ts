@@ -33,7 +33,8 @@ export function useWeather(locationName: string) {
   useEffect(() => {
     setIsLoading(true);
     if (location) {
-      const oneDay = 24 * 60 * 60 * 1000;
+      const oneHour = 60 * 60 * 1000;
+      const oneDay = 24 * oneHour;
       const tomorrow = Date.now() + oneDay;
       fetchWeather({
         dataSets: ["currentWeather", "forecastHourly", "forecastDaily"],
@@ -43,7 +44,7 @@ export function useWeather(locationName: string) {
         longitude: location.coordinate.longitude,
         dailyStart: new Date(tomorrow).toISOString(),
         dailyEnd: new Date(tomorrow + 7 * oneDay).toISOString(),
-        hourlyStart: new Date().toISOString(),
+        hourlyStart: new Date(Date.now() + oneHour).toISOString(),
         hourlyEnd: new Date(tomorrow).toISOString()
       }).then((response) => response.data)
         .then((data) => {

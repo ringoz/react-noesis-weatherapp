@@ -29,7 +29,7 @@ export function DailyItem({ data, onClick }: DailyItemProps) {
           <ColumnDefinition Width={50} />
           <ColumnDefinition Width="1*" />
           <ColumnDefinition Width="2*" />
-          <ColumnDefinition Width={60} />
+          <ColumnDefinition Width={70} />
         </Grid.ColumnDefinitions>
         <Image
           Grid$Column={0}
