@@ -26,11 +26,7 @@ const fetchWeather = fetcher
 export function useWeather(locationName: string) {
   const { location, isMockData } = useLocation(locationName);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [currentWeather, setCurrentWeather] =
-    useState<WeatherKit.CurrentWeather>();
-  const [hourlyWeather, setHourlyWeather] =
-    useState<WeatherKit.HourlyForecast>();
-  const [dailyWeather, setDailyWeather] = useState<WeatherKit.DailyForecast>();
+  const [weather, setWeather] = useState<WeatherKit.Weather>();
   const handleError = useErrorHandler();
 
   useEffect(() => {
@@ -50,12 +46,7 @@ export function useWeather(locationName: string) {
         hourlyStart: new Date(Date.now() + oneHour).toISOString(),
         hourlyEnd: new Date(tomorrow).toISOString(),
       })
-        .then((response) => response.data)
-        .then((data) => {
-          setCurrentWeather(data.currentWeather!);
-          setHourlyWeather(data.forecastHourly!);
-          setDailyWeather(data.forecastDaily!);
-        })
+        .then((response) => setWeather(response.data))
         .catch(handleError)
         .finally(() => {
           setTimeout(() => setIsLoading(false));
@@ -66,9 +57,7 @@ export function useWeather(locationName: string) {
   return {
     isLoading,
     location,
-    currentWeather,
-    hourlyWeather,
-    dailyWeather,
+    weather,
     isMockData: isMockData || !baseUrl,
   };
 }

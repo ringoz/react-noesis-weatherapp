@@ -20,26 +20,18 @@ import { useWeather } from './hooks';
 import { WeatherKit } from './models';
 
 export function App() {
-  const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =
-    useState<WeatherKit.CurrentWeatherConditions>();
+  const [currentConditions, setCurrentConditions] = useState<WeatherKit.CurrentWeatherConditions>();
   const [currentLocationName, setCurrentLocationName] = useState<string>('');
-  const {
-    isLoading,
-    location,
-    currentWeather,
-    hourlyWeather,
-    dailyWeather,
-    isMockData,
-  } = useWeather(currentLocationName);
+  const { isLoading, location, weather, isMockData } = useWeather(currentLocationName);
 
   useEffect(() => {
-    setCurrentWeatherSelectedItem(currentWeather);
-  }, [currentWeather]);
+    setCurrentConditions(weather?.currentWeather);
+  }, [weather]);
 
   const hourlyItemClickHandler = (
     current: WeatherKit.CurrentWeatherConditions
   ) => {
-    setCurrentWeatherSelectedItem(current);
+    setCurrentConditions(current);
   };
 
   const changeLocationHandler = (location: string) => {
@@ -60,20 +52,20 @@ export function App() {
                 <Header
                   locality={location?.structuredAddress.locality}
                   country={location?.country}
-                  data={currentWeatherSelectedItem!}
+                  data={currentConditions!}
                   changeLocation={changeLocationHandler}
                 ></Header>
                 <CurrentWeather
-                  data={currentWeatherSelectedItem!}
+                  data={currentConditions!}
                 ></CurrentWeather>
                 <CurrentWeatherDetails
-                  data={currentWeatherSelectedItem!}
+                  data={currentConditions!}
                 ></CurrentWeatherDetails>
                 <Hourly
-                  data={hourlyWeather!}
+                  data={weather?.forecastHourly!}
                   clickHandler={hourlyItemClickHandler}
                 ></Hourly>
-                <Daily data={dailyWeather!}></Daily>
+                <Daily data={weather?.forecastDaily!}></Daily>
               </StackPanel>
             </MockData>
           </Loading>

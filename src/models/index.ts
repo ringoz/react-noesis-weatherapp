@@ -7,6 +7,7 @@ export namespace MapKit {
 import { components as WK } from './WeatherKit';
 export namespace WeatherKit {
   export type Metadata = WK['schemas']['Metadata'];
+  export type Weather = WK['schemas']['Weather'];
   export type CurrentWeather = WK['schemas']['CurrentWeather'];
   export type HourlyForecast = WK['schemas']['HourlyForecast'];
   export type HourWeatherConditions = WK['schemas']['HourWeatherConditions'];

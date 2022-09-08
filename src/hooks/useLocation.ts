@@ -32,8 +32,7 @@ export function useLocation(locationName: string) {
             loc: `${pos.coords.latitude},${pos.coords.longitude}`,
             lang: 'en-US',
           })
-            .then((response) => response.data)
-            .then((data) => setLocation(data.results[0]))
+            .then((response) => setLocation(response.data.results[0]))
             .catch(handleError);
         }, handleError);
       }
@@ -42,8 +41,7 @@ export function useLocation(locationName: string) {
         q: locationName,
         lang: 'en-US',
       })
-        .then((response) => response.data)
-        .then((data) => setLocation(data.results[0]))
+        .then((response) => setLocation(response.data.results[0]))
         .catch(handleError);
     }
   }, [locationName, handleError]);
