@@ -3,7 +3,7 @@ export * from "./CurrentWeatherDetails";
 export * from "./Daily";
 export * from "./DailyItem";
 export * from "./DailyItemDetails";
-export * from "./Header";
+export * from "./CurrentLocation";
 export * from "./Hourly";
 export * from "./HourlyItem";
 export * from "./Weather";

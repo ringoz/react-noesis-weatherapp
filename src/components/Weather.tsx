@@ -5,7 +5,7 @@ import { WeatherKit } from '../models';
 import { CurrentWeather } from './CurrentWeather';
 import { CurrentWeatherDetails } from './CurrentWeatherDetails';
 import { Daily } from './Daily';
-import { Header } from './Header';
+import { CurrentLocation } from './CurrentLocation';
 import { Hourly } from './Hourly';
 
 export function Weather() {
@@ -25,15 +25,20 @@ export function Weather() {
     setCurrentLocationName(location);
   };
 
+  const currentDate = new Date(
+    (currentConditions as WeatherKit.CurrentWeather).asOf ??
+    (currentConditions as WeatherKit.HourWeatherConditions).forecastStart
+  );
+
   return (
     <StackPanel>
       {isMockData && <MockDataHeader />}
-      <Header
+      <CurrentLocation
         locality={location.structuredAddress.locality}
         country={location.country}
-        data={currentConditions}
+        datetime={currentDate}
         changeLocation={changeLocationHandler}
-      ></Header>
+      ></CurrentLocation>
       <CurrentWeather
         data={currentConditions}
       ></CurrentWeather>
