@@ -6,3 +6,4 @@ export * from "./DailyItemDetails";
 export * from "./Header";
 export * from "./Hourly";
 export * from "./HourlyItem";
+export * from "./Weather";

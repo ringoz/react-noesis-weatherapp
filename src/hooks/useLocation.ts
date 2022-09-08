@@ -1,7 +1,5 @@
 import { Fetcher } from 'openapi-typescript-fetch';
-import { useEffect, useState } from 'react';
-import { useErrorHandler } from 'react-error-boundary';
-import { MapKit } from '../models';
+import { suspend } from 'suspend-react';
 import { paths } from '../models/MapKit';
 
 const baseUrl = import.meta.env.VITE_APP_MAPKIT_BASEURL;
@@ -21,33 +19,23 @@ const fetchGeocode = fetcher.path('/v1/geocode').method('get').create();
 const fetchReverse = fetcher.path('/v1/reverseGeocode').method('get').create();
 
 export function useLocation(locationName: string) {
-  const [location, setLocation] = useState<MapKit.Place>();
-  const handleError = useErrorHandler();
-
-  useEffect(() => {
+  const response = suspend(async () => {
     if (locationName === '' && baseUrl) {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((pos) => {
-          fetchReverse({
-            loc: `${pos.coords.latitude},${pos.coords.longitude}`,
-            lang: 'en-US',
-          })
-            .then((response) => setLocation(response.data.results[0]))
-            .catch(handleError);
-        }, handleError);
-      }
-    } else {
-      fetchGeocode({
-        q: locationName,
+      const pos: GeolocationPosition = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
+      return fetchReverse({
+        loc: `${pos.coords.latitude},${pos.coords.longitude}`,
         lang: 'en-US',
-      })
-        .then((response) => setLocation(response.data.results[0]))
-        .catch(handleError);
+      });
     }
-  }, [locationName, handleError]);
+
+    return fetchGeocode({
+      q: locationName,
+      lang: 'en-US',
+    });
+  }, [locationName]);
 
   return {
-    location,
+    location: response.data.results[0],
     isMockData: !baseUrl,
   };
 }

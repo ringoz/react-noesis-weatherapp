@@ -3,26 +3,14 @@ import {
   TextBlock,
   VerticalAlignment
 } from '@ringozz/react-noesis';
-import { ReactElement } from 'react';
 
-type LoadingProps = {
-  children: ReactElement;
-  isLoading: boolean;
-};
-
-export function Loading({ children, isLoading }: LoadingProps) {
+export function Loading() {
   return (
-    <>
-      {isLoading ? (
-        <TextBlock
-          VerticalAlignment={VerticalAlignment.Center}
-          HorizontalAlignment={HorizontalAlignment.Center}
-        >
-          Loading...
-        </TextBlock>
-      ) : (
-        children
-      )}
-    </>
+    <TextBlock
+      VerticalAlignment={VerticalAlignment.Center}
+      HorizontalAlignment={HorizontalAlignment.Center}
+    >
+      Loading...
+    </TextBlock>
   );
 }
