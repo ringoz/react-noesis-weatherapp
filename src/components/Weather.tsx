@@ -30,7 +30,7 @@ export function Weather() {
   );
 
   return (
-    <StackPanel>
+    <StackPanel Margin={8}>
       {isMockData && <MockDataHeader />}
       <CurrentLocation
         locality={location.structuredAddress.locality}
