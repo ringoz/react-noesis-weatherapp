@@ -24,7 +24,7 @@ export function Daily({ data }: DailyProps) {
       setActiveIndex(d.forecastStart);
     }
   };
-  
+
   return (
     <HeaderedContentControl Margin={8}>
       <HeaderedContentControl.Header>

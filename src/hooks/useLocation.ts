@@ -21,7 +21,9 @@ const fetchReverse = fetcher.path('/v1/reverseGeocode').method('get').create();
 export function useLocation(locationName: string) {
   const response = suspend(async () => {
     if (locationName === '' && baseUrl) {
-      const pos: GeolocationPosition = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
+      const pos: GeolocationPosition = await new Promise((resolve, reject) =>
+        navigator.geolocation.getCurrentPosition(resolve, reject)
+      );
       return fetchReverse({
         loc: `${pos.coords.latitude},${pos.coords.longitude}`,
         lang: 'en-US',

@@ -17,8 +17,10 @@ type CurrentWeatherProps = {
 };
 
 export function CurrentWeather({ data }: CurrentWeatherProps) {
-  const rainChance = (data as WeatherKit.HourWeatherConditions).precipitationChance;
-  const rainIntensity = (data as WeatherKit.CurrentWeather).precipitationIntensity ?? 0;
+  const rainChance = (data as WeatherKit.HourWeatherConditions)
+    .precipitationChance;
+  const rainIntensity =
+    (data as WeatherKit.CurrentWeather).precipitationIntensity ?? 0;
   return (
     <>
       <UniformGrid Margin={8} Columns={2}>

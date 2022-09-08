@@ -1,4 +1,4 @@
-import { Bsod } from "@ringozz/react-noesis";
+import { Bsod } from '@ringozz/react-noesis';
 
 export const Error = Bsod;
 

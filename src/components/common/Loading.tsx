@@ -1,7 +1,7 @@
 import {
   HorizontalAlignment,
   TextBlock,
-  VerticalAlignment
+  VerticalAlignment,
 } from '@ringozz/react-noesis';
 
 export function Loading() {

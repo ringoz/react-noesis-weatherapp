@@ -1,6 +1,9 @@
 import {
-  DynamicResource, Grid, PanningMode, ScrollBarVisibility,
-  ScrollViewer
+  DynamicResource,
+  Grid,
+  PanningMode,
+  ScrollBarVisibility,
+  ScrollViewer,
 } from '@ringozz/react-noesis';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -12,7 +15,10 @@ export function App() {
     <ErrorBoundary FallbackComponent={Error} onError={ErrorHandler}>
       <Grid Background={DynamicResource('Brush.TextBox.Normal')}>
         <Suspense fallback={<Loading />}>
-          <ScrollViewer PanningMode={PanningMode.VerticalOnly} VerticalScrollBarVisibility={ScrollBarVisibility.Hidden}>
+          <ScrollViewer
+            PanningMode={PanningMode.VerticalOnly}
+            VerticalScrollBarVisibility={ScrollBarVisibility.Hidden}
+          >
             <Weather />
           </ScrollViewer>
         </Suspense>

@@ -1,4 +1,17 @@
-import { DynamicResource, FontWeight, HorizontalAlignment, Hyperlink, Orientation, Path, StackPanel, TextAlignment, TextBlock, TextWrapping, VerticalAlignment, Viewbox } from '@ringozz/react-noesis';
+import {
+  DynamicResource,
+  FontWeight,
+  HorizontalAlignment,
+  Hyperlink,
+  Orientation,
+  Path,
+  StackPanel,
+  TextAlignment,
+  TextBlock,
+  TextWrapping,
+  VerticalAlignment,
+  Viewbox,
+} from '@ringozz/react-noesis';
 import { useEffect, useState } from 'react';
 import { useWeather } from '../hooks';
 import { WeatherKit } from '../models';
@@ -11,7 +24,8 @@ export function Weather() {
   const [currentLocationName, setCurrentLocationName] = useState<string>('');
   const { location, weather, isMockData } = useWeather(currentLocationName);
 
-  const [currentConditions, setCurrentConditions] = useState<WeatherKit.CurrentWeatherConditions>(weather.currentWeather!);
+  const [currentConditions, setCurrentConditions] =
+    useState<WeatherKit.CurrentWeatherConditions>(weather.currentWeather!);
   useEffect(() => {
     setCurrentConditions(weather.currentWeather!);
   }, [weather]);
@@ -26,7 +40,7 @@ export function Weather() {
 
   const selectedDate = new Date(
     (currentConditions as WeatherKit.CurrentWeather).asOf ??
-    (currentConditions as WeatherKit.HourWeatherConditions).forecastStart
+      (currentConditions as WeatherKit.HourWeatherConditions).forecastStart
   );
 
   return (
@@ -39,7 +53,10 @@ export function Weather() {
         changeLocation={changeLocationHandler}
       />
       <CurrentWeather data={currentConditions} />
-      <Hourly data={weather.forecastHourly!} clickHandler={hourlyItemClickHandler} />
+      <Hourly
+        data={weather.forecastHourly!}
+        clickHandler={hourlyItemClickHandler}
+      />
       <Daily data={weather.forecastDaily!} />
       {!isMockData && <RealDataFooter />}
     </StackPanel>
@@ -51,8 +68,8 @@ const MockDataHeader = () => (
     TextWrapping={TextWrapping.Wrap}
     TextAlignment={TextAlignment.Center}
   >
-    The application is running in demo mode. To run the application with
-    real data please check the{' '}
+    The application is running in demo mode. To run the application with real
+    data please check the{' '}
     <Hyperlink NavigateUri="https://github.com/ringoz/react-noesis-weatherapp">
       documentation
     </Hyperlink>
