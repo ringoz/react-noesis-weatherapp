@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useWeather } from '../hooks';
 import { WeatherKit } from '../models';
 import { CurrentWeather } from './CurrentWeather';
-import { CurrentWeatherDetails } from './CurrentWeatherDetails';
 import { Daily } from './Daily';
 import { CurrentLocation } from './CurrentLocation';
 import { Hourly } from './Hourly';
@@ -25,7 +24,7 @@ export function Weather() {
     setCurrentLocationName(location);
   };
 
-  const currentDate = new Date(
+  const selectedDate = new Date(
     (currentConditions as WeatherKit.CurrentWeather).asOf ??
     (currentConditions as WeatherKit.HourWeatherConditions).forecastStart
   );
@@ -36,20 +35,12 @@ export function Weather() {
       <CurrentLocation
         locality={location.structuredAddress.locality}
         country={location.country}
-        datetime={currentDate}
+        datetime={selectedDate}
         changeLocation={changeLocationHandler}
-      ></CurrentLocation>
-      <CurrentWeather
-        data={currentConditions}
-      ></CurrentWeather>
-      <CurrentWeatherDetails
-        data={currentConditions}
-      ></CurrentWeatherDetails>
-      <Hourly
-        data={weather.forecastHourly!}
-        clickHandler={hourlyItemClickHandler}
-      ></Hourly>
-      <Daily data={weather.forecastDaily!}></Daily>
+      />
+      <CurrentWeather data={currentConditions} />
+      <Hourly data={weather.forecastHourly!} clickHandler={hourlyItemClickHandler} />
+      <Daily data={weather.forecastDaily!} />
       {!isMockData && <RealDataFooter />}
     </StackPanel>
   );

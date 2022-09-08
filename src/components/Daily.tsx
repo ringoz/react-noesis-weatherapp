@@ -7,8 +7,8 @@ import {
 } from '@ringozz/react-noesis';
 import { useState } from 'react';
 import { WeatherKit } from '../models';
+import { DetailsGrid } from './common';
 import { DailyItem } from './DailyItem';
-import { DailyItemDetails } from './DailyItemDetails';
 
 type DailyProps = {
   data: WeatherKit.DailyForecast;
@@ -24,6 +24,7 @@ export function Daily({ data }: DailyProps) {
       setActiveIndex(d.forecastStart);
     }
   };
+  
   return (
     <HeaderedContentControl Margin={8}>
       <HeaderedContentControl.Header>
@@ -42,7 +43,26 @@ export function Daily({ data }: DailyProps) {
                   : Visibility.Collapsed
               }
             >
-              <DailyItemDetails data={d} />
+              <DetailsGrid
+                details={[
+                  `Rain: ${Math.round(d.precipitationChance * 100)}%`,
+                  `Pressure: ${0}hPa`,
+                  `Humidity: ${Math.round(d.daytimeForecast!.humidity * 100)}%`,
+                  `Clouds: ${Math.round(d.daytimeForecast!.cloudCover * 100)}%`,
+                  `Wind speed: ${d.daytimeForecast!.windSpeed} m/s`,
+                  `UV Index: ${d.maxUvIndex}`,
+                  `Sunrise: ${new Date(d.sunrise!).toLocaleString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false,
+                  })}`,
+                  `Sunset: ${new Date(d.sunset!).toLocaleString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false,
+                  })}`,
+                ]}
+              />
             </StackPanel>
           </StackPanel>
         ))}
