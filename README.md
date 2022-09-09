@@ -2,11 +2,9 @@
 
 # React Weather App
 
-![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)
-
 Based on [React-WeatherApp](https://github.com/gheorghedarle/React-WeatherApp) by @gheorghedarle
 
-**Weather App** is a simple weather app developed in typescript using React and NoesisGUI. The app allows you to see the weather from your current location or another location around the globe using **WeatherKit REST API**.
+**Weather App** is a simple weather app developed in typescript using React and [NoesisGUI](https://www.noesisengine.com/). The app allows you to see the weather from your current location or another location around the globe using **WeatherKit REST API**.
 
 ## Setup
 
