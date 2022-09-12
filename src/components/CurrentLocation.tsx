@@ -80,7 +80,7 @@ export function CurrentLocation({
                 });
               }}
             >
-              <TextBlock>☻</TextBlock>
+              <TextBlock FontSize={20}>☻</TextBlock>
             </Button>
           )}
         </ThemeContext.Consumer>
