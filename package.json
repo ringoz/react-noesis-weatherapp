@@ -9,6 +9,7 @@
     "codegen": "openapi-typescript ./src/models/MapKit.yaml --output ./src/models/MapKit.ts && openapi-typescript ./src/models/WeatherKit.yaml --output ./src/models/WeatherKit.ts"
   },
   "dependencies": {
+    "@ringozz/wasi-land": "0.0.19",
     "@ringozz/react-noesis": "0.0.48",
     "openapi-typescript-fetch": "^1.1",
     "react": "^18.2",
